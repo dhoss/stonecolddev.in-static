@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from stonecolddev.in/posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" type="application/rss+xml" title="Stonecold Devin RSS Feed" href="../feed.rss">
+<title>OSI: Office of Secret Intelligence</title>
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="zs430QHlIIOmorwL34kroub7vLiLj3QE73Rc7T1CdkdomOciMP7H/+gvZmKcGrpuS3mh9Gs3Z+3DICBhZ0l6Ug=="/>
+<link rel="stylesheet" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" media="all" href="../assets/application-24d259c985a7529c30f10dfa51efa0eef10e104849c3303e76f286ffb833fbb2.css"/>
+<link rel="stylesheet" media="all" href="../assets/posts-11d38437333d33a8d5e290fc265a18821de3a415743629310652cdd3858429e0.css"/>
+ 
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-144x144-precomposed.html" sizes="144x144"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-114x114-precomposed.html" sizes="114x114"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-72x72-precomposed.html" sizes="72x72"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-precomposed.html"/>
+ 
+ 
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.html"/>
+ 
+<script>
+      var _prum = [['id', '541bf1e1abe53d695828c003'],
+                   ['mark', 'firstbyte', (new Date()).getTime()]];
+      (function() {
+        var s = document.getElementsByTagName('script')[0]
+          , p = document.createElement('script');
+            p.async = 'async';
+            p.src = 'http://rum-static.pingdom.net/prum.min.js';
+            s.parentNode.insertBefore(p, s);
+      })();
+    </script>
+</head>
+<body>
+<div class="blog-masthead">
+<div class="container">
+<div class="navbar navbar-default" role="navigation">
+ 
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="../index.html">Office of Secret Intelligence</a>
+</div>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+<ul class="nav nav-pills">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../users/sign_up.html">Sign up</a></li>
+<li><a href="../users/sign_in.html">Sign in</a></li>
+<li><a href="../index.html">Sign in with Twitter</a></li>
+<li class="dropdown">
+<a data-toggle="dropdown" class="dropdown-toggle" href="../posts.html">Posts <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="../posts.html">View All</a></li>
+</ul> 
+</li> 
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+ 
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8235962495693803" data-ad-slot="9909766461" data-ad-format="auto"></ins>
+<div class="blog-header">
+<h1 class="blog-title"><a href="../index.html">Office of Secret Intelligence</a> </h1>
+<p class="lead blog-description">Who taught you to be a spy, fucking Gallagher!?! </p>
+</div>
+<div class="row">
+<div class="col-sm-8 blog-main">
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+May 15 at 02:27 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">3 comments</a>
+</p>
+<div class="blog-post-body">
+<p><strong>UPDATE:</strong> This isn't a full tutorial. I plan on doing this in pieces. The code shown here is one example of one piece of the app. I'll delve more into the code later, but I thought that the issues I encountered while getting up and going were more important to write about initially. I hope that's not too confusing.</p>
+<hr/>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>It's been a while, but I finally have something interesting to write about.</p>
+<p>&nbsp;</p>
+<p>I've been dabbling with the <a href="https://www.playframework.com/">Play framework</a>&nbsp;again after some time. &nbsp;Work uses Java for a whole lot of stuff so I figured it'd behoove me to ease myself into the JVM again. &nbsp;I don't know Scala very well, but after a foray into Go and C#, looking at it now makes a lot more sense than when I first looked at it.</p>
+<p>I decided that I wanted to write a workout progress tracker. &nbsp;I'm getting married in August and I made it a goal a while back to put on some muscle weight, and put on some weight on the bar. &nbsp;I'd been struggling and struggling to get more weight up on the bar, and just couldn't be consistent. &nbsp;Long story short, it turns out a lot of it was my diet, probably almost all of it (but that's another story). &nbsp;My lifts started improving, I gained about 10-12 pounds, and I decided I wanted to see how far I've come since I started officially lifting again a few years ago.</p>
+<p>&nbsp;</p>
+<p>A few things have changed since I last looked at Play. &nbsp;For one, it uses the activator system to scaffold apps, run tests, install scala, etc. &nbsp;It's a little confusing, but really it's not so bad. &nbsp;I also had intended on using <a href="http://squeryl.org/">squeryl</a>&nbsp;for my database object stuff, but it looks like it hasn't been updated in a while and I remembered the agonizing pain I went through just to get it to work at all the last time I did this. So, I went with <a href="https://www.typesafe.com/community/core-tools/slick">slick</a>, play's endorsed <span style="text-decoration: line-through;">ORM</span> <a href="http://slick.typesafe.com/doc/3.0.0/introduction.html#functional-relational-mapping">FRM</a>. &nbsp;Specifically, I went with <a href="https://github.com/playframework/play-slick">play-slick</a>, which integrates slick directly into play itself. &nbsp;</p>
+<p>This was a little bit of a nightmare at first, because the tutorial for play initially sets you up with play 2.3.8 by default, and I wanted to be using the latest play-slick, as those docs seemed the most robust and up to date, which requires:&nbsp;</p>
+<ol>
+<li>Play version 2.4.x</li>
+<li>Slick version 3.0.x</li>
+<li>Scala version 2.10.x/2.11.x</li>
+</ol>
+<p>The issue I ran into, that frustrated me to no end, was the fact that the tutorials don't specify which specific versions of each you need. &nbsp;I just looked through my commit history to try to find specifics, and I started convulsing, so long story short: if you're getting a lot of errors trying to find dependencies, make sure your build.sbt has at least a couple resolvers for the typesafe repository, and google the latest version for your dependency and try using that. &nbsp;Here are my plugin.sbt and build.sbt for reference (I went ahead and made a gist so that they remain tied to this post's version, here's the repo in case you are from the future and want to see something that may be more up to date:&nbsp;<a href="https://github.com/dhoss/steel">https://github.com/dhoss/steel</a>):&nbsp;<a href="https://gist.github.com/dhoss/1a824ee5397f22eec0ac">https://gist.github.com/dhoss/1a824ee5397f22eec0ac</a>.</p>
+<p><strong>ANOTHER NOTE BEFORE I GO FURTHER:</strong> I felt like a complete idiot for this, but adding a resolver in plugins.sbt doesn't necessarily mean it's going to be available in build.sbt. &nbsp;I'm sure this is incredibly naive and dumb, but I spent a lot of time yelling at my screen trying to figure out why nothing was being pulled down from the repo I had just added. &nbsp;I ended up just adding the resolvers to both build.sbt and plugins.sbt. &nbsp;Like they say, "shoot 'em all and let God sort 'em out."</p>
+<p>&nbsp;</p>
+<p>The last thing I really needed to get sorted was this nagging issue where my app couldn't connect to postgres. &nbsp;Postgres was running, I could connect to it using the same username and password, but the app couldn't do it. Again, this was something minor that turned out to be in front of my face the whole time, but because I wasn't able to find a&nbsp;lot of documentation on slick driver connection configuration. &nbsp;This one line was all that was standing between me and glory:</p>
+<p>
+<script src="https://gist.github.com/dhoss/1c24abebe8e11ccaea19.js"></script>
+</p>
+<p>&nbsp;This needs to go before a line that looks like this:</p>
+<p>
+<script src="https://gist.github.com/dhoss/1a1e3a6b03c8aa922ed6.js"></script>
+</p>
+<p>&nbsp;</p>
+<p>This really confused me for a while, so&nbsp;I can help keep others from this same frustration.</p>
+<p>Moving on to some code.</p>
+<p><strong>Make sure you read through this and get everything set up first: <a href="https://www.playframework.com/documentation/2.4.x/Home">https://www.playframework.com/documentation/2.4.x/Home</a>&nbsp;</strong></p>
+<p>I decided to go with a DAO set up for my database access, because the <a href="https://github.com/playframework/play-slick/tree/master/samples/computer-database">initial code I was following&nbsp;</a>&nbsp;is set up as such and it seemed reasonably simple and flexible. &nbsp;You do have to write your CRUD methods, but I found it nice to be able to control exactly what you want those doing.</p>
+<p>For starters, let's define our model. &nbsp;In this case, we basically define our table structure in relatively broad strokes.</p>
+<p>
+<script src="https://gist.github.com/dhoss/dc6d5caada2e2281ab75.js"></script>
+</p>
+<p>Simple enough. &nbsp;Remember, you still need to write the actual SQL to create these tables with play evolutions.</p>
+<p>Next, let's take a look at one of our DAOs.</p>
+<p>
+<script src="https://gist.github.com/dhoss/5b2f9b8007cf725be254.js"></script>
+</p>
+<p>We define our column methods, and a * projection that acts how would expect it would with SQL. &nbsp;Next, we create a class that sets up the dbConfig, our query object (exerciseTypes), a method to map ids to names for option dropdowns, and our insert and list methods. &nbsp;Fairly simple.</p>
+<p>Per TDD, here is a small test that makes sure we can insert and retrieve things:</p>
+<p>
+<script src="https://gist.github.com/dhoss/dec361f2c11eee2e3270.js"></script>
+</p>
+<p>Nothing out of the ordinary here either.</p>
+<p>So, this concludes things for now. &nbsp;I've got a ways to go on my scala skills, and this app certainly has a bit to go as well. &nbsp;I'm hoping to document the app's progress and post any "gotchas" I run into from here on out as well.</p>
+<p><span style="text-decoration: line-through;">Next time, I'll try to demonstrate how to add a datatable for quick CRUD and sorting</span> (Part 2:&nbsp;<a href="../playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">http://stonecolddev.in/posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing</a>)</p>
+</div>
+<hr/>
+</div>
+ 
+<a href="../users/sign_in.html">Sign in to reply</a>
+<br/>
+<p>Replies:</p>
+<div class="blog-post">
+<p class="blog-post-meta">
+2015-06-07 18:18:46 -0600 by
+</p>
+<div class="blog-post-body">
+<p>Thanks for the great write up! I am setting up a webapp very similar to yours and was going through this version/documentation mismatch hell. You saved me a lot of time!</p>
+</div>
+<p><a href="../users/sign_in.html">Reply</a></p>
+<ul class="replies">
+<li>
+<div class="blog-post">
+<p class="blog-post-meta">
+by Devin
+</p>
+<div class="blog-post-body">
+Hey, thanks for the reply! Sorry for getting back to you so late, I don't have email notifications set up on here yet.
+I'm glad I could be of help. I'm hoping to finally get part three out this week some time as well, in case you're interested in following along.
+</div>
+<p><a href="../users/sign_in.html">Reply</a></p>
+<ul class="replies">
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="blog-post">
+<p class="blog-post-meta">
+2015-05-18 01:24:22 -0600 by
+</p>
+<div class="blog-post-body">
+<p>Hi Devin,</p>
+<p>I had a look at your build.sbt (here <a href="https://github.com/dhoss/steel/blob/master/build.sbt">https://github.com/dhoss/steel/blob/master/build.sbt</a>), and there are a couple of things you should change. First, remove the dependency to <strong>jdbc&nbsp;</strong>module. You are using the play-slick module for all database accesses, so you should not need to Play jdbc. In fact,&nbsp;as soon as you update to play-slick 1.0.0-RC2 (which was released last week, together with Play 2.4.0-RC3),&nbsp;you will get an exception similar to&nbsp;<a href="https://playframework.com/documentation/2.4.0-RC3/PlaySlickFAQ#A-binding-to-play.api.db.DBApi-was-already-configured">https://playframework.com/documentation/2.4.0-RC3/PlaySlickFAQ#A-binding-to-play.api.db.DBApi-was-already-configured</a>. Second, update to play-slick 1.0.0-RC2&nbsp;because RC1 had an annoying issue (<a href="https://github.com/playframework/play-slick/issues/245">https://github.com/playframework/play-slick/issues/245</a>)&nbsp;that could prevent starting your app.</p>
+<p>Otherwise,&nbsp;it's a good article.&nbsp;I'll see how I can clarify why you need both</p>
+<blockquote>
+<p>slick.dbs.default.driver="slick.driver.PostgresDriver$"&nbsp; slick.dbs.default.db.driver="org.postgresql.Driver"</p>
+</blockquote>
+<p>in your application.conf. But,&nbsp;in a nutshell, the first is the Slick driver (which you will be using in your code),&nbsp;while the second is the JDBC driver which is going to be used by Slick backend. See the Slick documentation for DatabaseConfig&nbsp;<a href="http://slick.typesafe.com/doc/3.0.0/database.html#databaseconfig">http://slick.typesafe.com/doc/3.0.0/database.html#databaseconfig</a></p>
+<p>Thanks for trying it out, and taking the time to write about your experience.</p>
+</div>
+<p><a href="../users/sign_in.html">Reply</a></p>
+<ul class="replies">
+<li>
+<div class="blog-post">
+<p class="blog-post-meta">
+2016-06-25 04:53:43 -0600 by
+</p>
+<div class="blog-post-body">
+<p>i am having the same problem</p>
+<p>rovisionException: Unable to provision, see the following errors: 1) No implementation for play.api.db.slick.DatabaseConfigProvider was bound. while locating play.api.db.slick.DatabaseConfigProvider for parameter 0 at repo.StudentRepo.&lt;init&gt;(StudentRepo.scala:17) while locating repo.StudentRepo for parameter 0 at controllers.LoginController.&lt;init&gt;(LoginController.scala:24) while locating controllers.LoginController for parameter 6 at router.Routes.&lt;init&gt;(Routes.scala:47) while locating router.Routes while locating play.api.inject.RoutesProvider while locating play.api.routing.Router for parameter 0 at play.api.http.JavaCompatibleHttpRequestHandler.&lt;init&gt;(HttpRequestHandler.scala:200) while locating play.api.http.JavaCompatibleHttpRequestHandler while locating play.api.http.HttpRequestHandler</p>
+<p>my build.sbt</p>
+<p>&nbsp;</p>
+<pre>name := """demo"""<br/><br/>version := "1.0-SNAPSHOT"<br/><br/>lazy val root = (project in file(".")).enablePlugins(PlayScala)<br/><br/>scalaVersion := "2.11.7"<br/><br/>libraryDependencies ++= Seq(<br/>  cache,<br/>  ws,<br/>  specs2 % Test,<br/>  "org.webjars" %% "webjars-play" % "2.5.0-1",<br/>  "org.webjars" % "bootstrap" % "3.1.1-2",<br/>  "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3",<br/>  "com.typesafe.play"   %%   "play-slick"              %   "1.1.1",<br/>  "com.h2database"    %     "h2"                    %   "1.4.187" ,<br/>  "org.postgresql" % "postgresql" % "9.4-1206-jdbc4",<br/>  "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3",<br/>  "ch.qos.logback"       %     "logback-classic"          %      "1.1.3",<br/>  "com.typesafe.play" %% "play-slick-evolutions" % "1.1.1",<br/>  "com.typesafe.slick" %% "slick-hikaricp" % "3.1.1",<br/>  "com.typesafe.slick"   %%    "slick"                   %      "3.1.1",<br/>  "org.seleniumhq.selenium" % "selenium-server" % "2.52.0",<br/>  "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.52.0",<br/>  "org.scalatest" %% "scalatest" % "2.2.1" % "test",<br/>  "org.scalatestplus" %% "play" % "1.4.0-M3" % "test",<br/>  "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.52.0"<br/><br/>)<br/>javaOptions in Test += "-Dconfig.file=conf/test.conf"<br/><br/>coverageExcludedPackages :="&lt;empty&gt;;router\\..*;"<br/><br/>resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"<br/><br/>// Play provides two styles of routers, one expects its actions to be injected, the<br/>// other, legacy style, accesses its actions statically.<br/>routesGenerator := InjectedRoutesGenerator<br/><br/><br/>resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"<br/><br/><br/><br/></pre>
+<p>&nbsp;</p>
+</div>
+<p><a href="../users/sign_in.html">Reply</a></p>
+<ul class="replies">
+</ul>
+</div>
+</li>
+<li>
+<div class="blog-post">
+<p class="blog-post-meta">
+by Devin
+</p>
+<div class="blog-post-body">
+<p>Wow! My first comments on this blog. &nbsp;Thanks for taking the time to check this out. &nbsp;</p>
+<p>I'll be sure to make the changes you mentioned, and update the article as well.</p>
+<p>&nbsp;</p>
+<p>Again, much appreciation for setting me straight, I've got lots more to write about in the coming weeks.</p>
+</div>
+<p><a href="../users/sign_in.html">Reply</a></p>
+<ul class="replies">
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="blog-post">
+<p class="blog-post-meta">
+2015-05-18 07:02:29 -0600 by
+</p>
+<div class="blog-post-body">
+<p>By the way, Slick is a FRM (<a href="http://slick.typesafe.com/doc/3.0.0/introduction.html#functional-relational-mapping">http://slick.typesafe.com/doc/3.0.0/introduction.html#functional-relational-mapping</a>), not a ORM.</p>
+</div>
+<p><a href="../users/sign_in.html">Reply</a></p>
+<ul class="replies">
+<li>
+<div class="blog-post">
+<p class="blog-post-meta">
+by Devin
+</p>
+<div class="blog-post-body">
+<p>Thanks! I was actually searching for what to call it but fell short. I'll update the article with that as well.</p>
+</div>
+<p><a href="../users/sign_in.html">Reply</a></p>
+<ul class="replies">
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div> 
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+<div class="sidebar-module sidebar-module-inset">
+<h4>About</h4>
+I myself dabbled in pacifism.
+</div>
+<div class="sidebar-module sidebar-module-inset">
+<form action="http://stonecolddev.in/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;"/>
+<label for="q">Search for:</label>
+<input type="text" name="q" id="q"/>
+<input type="submit" name="commit" value="Search"/>
+</form>
+</div>
+<div class="sidebar-module">
+<h4>Recent Activity</h4>
+<hr/>
+<p>Posts:</p>
+<ol class="list-unstyled">
+<li><a href="re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-a6661dcc-47cb-43fb-9ad5-3e9815264f92.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 25 at 04:53 AM by <a href="../users/11.html">/users/11</a></li>
+<li><a href="rss-is-up.html">RSS is up!</a> on August 02 at 08:01 PM by <a href="../users/1.html">Devin</a></li>
+<li><a href="re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-995d37b5-dd73-4026-a230-f42916315523.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 07 at 06:18 PM by <a href="../users/4.html">/users/4</a></li>
+<li><a href="playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres: Part 2 - Testing</a> on May 22 at 03:48 PM by <a href="../users/1.html">Devin</a></li>
+<li><a href="re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-8a76baaf-db32-40cb-8852-8dea9e392e82.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on May 18 at 07:02 AM by <a href="../users/3.html">/users/3</a></li>
+</ol>
+<hr/>
+</div>
+<div class="sidebar-module">
+<h4>Categories</h4>
+<ol class="list-unstyled">
+<li><a href="../categories/tech-help.html">Tech Help</a></li>
+<li><a href="../categories/code-snippets.html">code-snippets</a></li>
+<li><a href="../categories/devops.html">devops</a></li>
+<li><a href="../categories/9.html">weightlifting</a></li>
+<li><a href="../categories/8.html">ux</a></li>
+<li><a href="../categories/7.html">nerd</a></li>
+<li><a href="../categories/programming.html">programming</a></li>
+<li><a href="../categories/general.html">general</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Archives</h4>
+<ol class="list-unstyled">
+<li><a href="../0/00.html">
+0</a></li>
+<li><a href="../2016/06.html">
+June 2016</a></li>
+<li><a href="../2015/08.html">
+August 2015</a></li>
+<li><a href="../2015/06.html">
+June 2015</a></li>
+<li><a href="../2015/05.html">
+May 2015</a></li>
+<li><a href="../2015/02.html">
+February 2015</a></li>
+<li><a href="../2015/01.html">
+January 2015</a></li>
+<li><a href="../2014/12.html">
+December 2014</a></li>
+<li><a href="../2014/11.html">
+November 2014</a></li>
+<li><a href="../2014/10.html">
+October 2014</a></li>
+<li><a href="../2014/09.html">
+September 2014</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Elsewhere</h4>
+<ol class="list-unstyled">
+<li><a href="http://twitter.com/stonecolddevin">twitter</a></li>
+<li><a href="http://github.com/dhoss">github</a></li>
+</ol>
+</div>
+</div> 
+</div> 
+</div> 
+<div class="footer">
+<p>Copyright &copy; <a href="../index.html">Devin Austin</a>.</p>
+<p>
+<a href="#">Back to top</a>
+</p>
+</div>
+<script src="../assets/application-2cfc6678b490e33002a68236b6c5d4a3691723d70b06c0e5e9fb52934470efbe.js" async="async"></script>
+<script src="../assets/posts-91efcc14089ce1794162dd25aa30f0aa9c48e63abf50f1ff60a0a0860081e54d.js" async="async"></script>
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-44716474-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+
+<!-- Mirrored from stonecolddev.in/posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:05 GMT -->
+</html>

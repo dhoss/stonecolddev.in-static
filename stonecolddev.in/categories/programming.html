@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from stonecolddev.in/categories/programming by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" type="application/rss+xml" title="Stonecold Devin RSS Feed" href="../feed.rss">
+<title>OSI: Office of Secret Intelligence</title>
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="HOZ/CrtVtPPdAiA8DxfWeTPb7krmWAY8712JVbNqGS26sK/5ik5Tj5OP+lVMhEe1nlnzBgbgFdXDCfXZ6WEVOA=="/>
+<link rel="stylesheet" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" media="all" href="../assets/application-24d259c985a7529c30f10dfa51efa0eef10e104849c3303e76f286ffb833fbb2.css"/>
+<link rel="stylesheet" media="all" href="../assets/categories-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css"/>
+ 
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-144x144-precomposed.html" sizes="144x144"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-114x114-precomposed.html" sizes="114x114"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-72x72-precomposed.html" sizes="72x72"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-precomposed.html"/>
+ 
+ 
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.html"/>
+ 
+<script>
+      var _prum = [['id', '541bf1e1abe53d695828c003'],
+                   ['mark', 'firstbyte', (new Date()).getTime()]];
+      (function() {
+        var s = document.getElementsByTagName('script')[0]
+          , p = document.createElement('script');
+            p.async = 'async';
+            p.src = 'http://rum-static.pingdom.net/prum.min.js';
+            s.parentNode.insertBefore(p, s);
+      })();
+    </script>
+</head>
+<body>
+<div class="blog-masthead">
+<div class="container">
+<div class="navbar navbar-default" role="navigation">
+ 
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="../index.html">Office of Secret Intelligence</a>
+</div>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+<ul class="nav nav-pills">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../users/sign_up.html">Sign up</a></li>
+<li><a href="../users/sign_in.html">Sign in</a></li>
+<li><a href="../index.html">Sign in with Twitter</a></li>
+<li class="dropdown">
+<a data-toggle="dropdown" class="dropdown-toggle" href="../posts.html">Posts <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="../posts.html">View All</a></li>
+</ul> 
+</li> 
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+ 
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8235962495693803" data-ad-slot="9909766461" data-ad-format="auto"></ins>
+<div class="blog-header">
+<h1 class="blog-title"><a href="../index.html">Office of Secret Intelligence</a> </h1>
+<p class="lead blog-description">Who taught you to be a spy, fucking Gallagher!?! </p>
+</div>
+<div class="row">
+<div class="col-sm-8 blog-main">
+<p id="notice"></p>
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/introducing-fluorescent.html">Introducing: Fluorescent</a></h2>
+<p class="blog-post-meta">
+February 09 at 12:54 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/introducing-fluorescent.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I've been working on a gem called&nbsp;<a href="https://github.com/dhoss/fluorescent">fluorescent</a>&nbsp;for a little while, and I just recently cleaned it up and released it. &nbsp;This CMS is using it, so it seems to be working.</p>
+<p>&nbsp;</p>
+<p>Basically, I wanted to be able to highlight search terms in search results and only show them in context for things like article bodies, which could potentially be several pages long. &nbsp;Truncating them to a certain length is certainly beneficial.</p>
+<p>&nbsp;</p>
+<p>Here's a brief rundown:</p>
+<p>&nbsp;</p>
+<p>Add fluorescent to your Gemfile:</p>
+<p><code>gem 'fluorescent'</code></p>
+<p>Next, you need to pass your search results from ActiveRecord to fluorescent.</p>
+<p>I do it like so:</p>
+<p>
+<script src="https://gist.github.com/dhoss/24d339d3b7ab43463b62.js"></script>
+</p>
+<p>Then, in my model:</p>
+<p>
+<script src="https://gist.github.com/dhoss/318097047ffe05eacb55.js"></script>
+</p>
+<p>Some very simple controller code:</p>
+<p>
+<script src="https://gist.github.com/dhoss/94ff2c0ac2a9194b8ad1.js"></script>
+</p>
+<p>&nbsp;</p>
+<p>How you display the results in the view is up to you. &nbsp;I simply make sure the query parameter exists, then make sure there are actual results, and then iterate over the array of hashes:</p>
+<p>
+<script src="https://gist.github.com/dhoss/1f7587dbe1ce703585ed.js"></script>
+</p>
+<p>&nbsp;</p>
+<p>I realize there are several points here that need to be brought up to the Rails 4 code standard, but I think these snippets get the point across. &nbsp;I think it would be wonderful just to be able to call something like <code>@results = fluorescent(@resultset)</code> and have it just do the right thing, but that's down the road a bit in terms of development and complexity.</p>
+<p>You'll also note that I keep track of the raw ActiveRecord resultset. &nbsp;This isn't really used right now, but originally it was in case you needed to get to the non-hash serialized ActiveRecord row objects.</p>
+<p>&nbsp;</p>
+<p>All thoughts and suggestions, feedback, and critique are welcome. &nbsp;Please enjoy!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-995d37b5-dd73-4026-a230-f42916315523.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+June 07 at 06:18 PM by <a href="../users/4.html">/users/4</a>
+in programming
+in reply to <a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a>
+<a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-995d37b5-dd73-4026-a230-f42916315523.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Thanks for the great write up! I am setting up a webapp very similar to yours and was going through this version/documentation mismatch hell. You saved me a lot of time!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/treeify-0-04-released.html">Treeify 0.04 Released</a></h2>
+<p class="blog-post-meta">
+November 06 at 03:49 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/treeify-0-04-released.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Amidst all this being busy stuff, I have released&nbsp;<a href="https://github.com/dhoss/treeify/releases/tag/0.04">version 0.04</a>&nbsp;of <a href="https://github.com/dhoss/treeify">Treeify</a>&nbsp;(link to gem:&nbsp;<a href="https://rubygems.org/gems/treeify">https://rubygems.org/gems/treeify</a>)</p>
+<p>&nbsp;</p>
+<p>Here's a list of changes (noted in the <a href="https://github.com/dhoss/treeify/blob/master/Changes.md">Changes.md</a>&nbsp;file):</p>
+<p>&nbsp;</p>
+<ul class="task-list">
+<li><a href="http://github.com/dhoss/treeify/commit/54bbb5c7d44eb2232d22029ace7334fc36568a77">bumped version</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/e120240efbdb9b90229f501edea9332c4f33ae61">added Changes file</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/8e4c0f885ee2d0c5612022a818877c452645c22f">removed benchmarking methods</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/4759454ea384bbd22e6626fcfa3c0547b413be57">updated benchmark script</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/654ad8f79f37324372fadd0d11eb822c6f80c6b0">updated code for benchmarks</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/e47a3b418047f063248a1acff135a59cb7b7f7a8">updated .gitignore, added rubygems badge</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/c35714853b006625e9c8e30157503dce76e9d393">Updated readme to reflect new config method</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/38ca2786948e6c9636b65616a20c9a77f3c2512e">updated pending message for ancestors to reflect that it is a bug. This closes #3;</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/001b9011c50a02551731fa5f456c45806a2e43c5">updated ancestor sql calls</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/c32ef8ebdf62efd9bcdc0f556d1cbee16f1bd17d">WITH RECURSIVE query now uses column names defined</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/1d83c11df782a0f3cb9f9a7edf017e58e94a7fe3">added functionality to build WITH RECURSIVE query properly with column names included in the query</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/da2acb482116773e12aeb0a3e68cd53b26135484">added test to verify that the SQL generated is correct</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/6ca1cbe076a290ab5800924d2e1e0d420a15eb8d">Merge branch 'devin/issues/2'</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/d76dc47c5091b9924a955e6186bf91325c0deb4e">changed config -&gt; tree_config to avoid method name clashing</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/c5464795dd44a1cc5dc6a673e703827e448735d0">fixed readme formatting</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/309adc56ca323aea294afe0e03d967c51a8d4530">added justification section</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/a3e3c696c0dbd2c5959f0a4fa21767cb9f7b18a9">actually fixed readme formatting</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/8547cf24b5c478b11dfbda87f71e304d96b1b9b4">fixed readme formatting</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/9cfaef70be834a31ced7753f33f5009288fc6557">Updated README</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/a69100343fe314c537a212bbc55b82395ba9574c">updated README, cleaned up debug code, updated dependencies. This closes #1</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/c1dbe262d64c62053f4881a566e17a4d550f7151">implemented tree structure and added tests</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/94b95a5c6a04c82176bdd37995c747563fd86a42">bumped activerecord dependency requirement</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/2969762ec56ca18c59912aef5e512407801841e2">fix up last example formatting</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/cb92e42cf7b884d79243b419003c3ae347777ab5">more formatting</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/a250b5b0a6a00dcbb3fa75c6d35d53feedf6d78a">readme list formatting</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/75036b53e1b88c017971777065d3b961223de2a8">Added example to README</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/f76c8f385e70d90e5944fe6be7995375d45855f5">README -&gt; README.md</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/71d28fb78a65c8bba24fdb002cc9dc19f3a6a0a3">testing markdown</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/3cf643bb54fc7d3660ec926b693a2a29d4ef6404">added sibling functionality</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/edd85ee2b5736fa8d594417fb140f15e7d419f3b">added more first level tests, added pending tests for sub children and siblings</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/34de49c808fdc6393853272ba059976691c96f51">adding a root node to add children to works</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/d36394de851c9365b9f1f78a055a0446621b5c19">bumped version for release</a></li>
+</ul>
+<p>(My changelog generation needs some work but hey! It's there.)</p>
+<p>&nbsp;</p>
+<p>I haven't yet updated this blog to use the newest Treeify code, but I'll do that soon, I hope. &nbsp;The biggest changes involved adding the ability to specify what columns to use in a query and actually have them retrieved. &nbsp;I created some benchmarks here:&nbsp;<a href="https://github.com/dhoss/treeify/wiki/Benchmarks">https://github.com/dhoss/treeify/wiki/Benchmarks</a>, though I don't know how accurate they are beyond saying one is faster than the other. &nbsp;Although the previous method was faster, it did a lot less, and the new find_by_sql call can be fine tuned in the future.</p>
+<p>On a side note, this article about generating Changelogs from git is awesome:&nbsp;<a href="http://brettterpstra.com/2014/08/03/shell-tricks-changelogs-with-git/,">http://brettterpstra.com/2014/08/03/shell-tricks-changelogs-with-git/,</a>&nbsp;and so is this snippet:&nbsp;https://coderwall.com/p/5cv5lg/generate-your-changelogs-with-git-log</p>
+<p>That's all for now, hopefully I'll get some more time tomorrow to write some more interesting articles.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-d9e81fcb-3a30-4cfe-9eac-bc7e1b912bc3.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+(draft) by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-995d37b5-dd73-4026-a230-f42916315523.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a>
+<a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-d9e81fcb-3a30-4cfe-9eac-bc7e1b912bc3.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+Hey, thanks for the reply! Sorry for getting back to you so late, I don't have email notifications set up on here yet.
+I'm glad I could be of help. I'm hoping to finally get part three out this week some time as well, in case you're interested in following along.
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/welp-that-s-a-bug.html">Welp, that&#39;s a bug</a></h2>
+<p class="blog-post-meta">
+September 18 at 08:15 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/welp-that-s-a-bug.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I'm an idiot, and made the post body column a varchar(255). &nbsp;That'll need fixing.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+May 18 at 01:24 AM by <a href="../users/3.html">/users/3</a>
+in programming
+in reply to <a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a>
+<a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">2 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Hi Devin,</p>
+<p>I had a look at your build.sbt (here <a href="https://github.com/dhoss/steel/blob/master/build.sbt">https://github.com/dhoss/steel/blob/master/build.sbt</a>), and there are a couple of things you should change. First, remove the dependency to <strong>jdbc&nbsp;</strong>module. You are using the play-slick module for all database accesses, so you should not need to Play jdbc. In fact,&nbsp;as soon as you update to play-slick 1.0.0-RC2 (which was released last week, together with Play 2.4.0-RC3),&nbsp;you will get an exception similar to&nbsp;<a href="https://playframework.com/documentation/2.4.0-RC3/PlaySlickFAQ#A-binding-to-play.api.db.DBApi-was-already-configured">https://playframework.com/documentation/2.4.0-RC3/PlaySlickFAQ#A-binding-to-play.api.db.DBApi-was-already-configured</a>. Second, update to play-slick 1.0.0-RC2&nbsp;because RC1 had an annoying issue (<a href="https://github.com/playframework/play-slick/issues/245">https://github.com/playframework/play-slick/issues/245</a>)&nbsp;that could prevent starting your app.</p>
+<p>Otherwise,&nbsp;it's a good article.&nbsp;I'll see how I can clarify why you need both</p>
+<blockquote>
+<p>slick.dbs.default.driver="slick.driver.PostgresDriver$"&nbsp; slick.dbs.default.db.driver="org.postgresql.Driver"</p>
+</blockquote>
+<p>in your application.conf. But,&nbsp;in a nutshell, the first is the Slick driver (which you will be using in your code),&nbsp;while the second is the JDBC driver which is going to be used by Slick backend. See the Slick documentation for DatabaseConfig&nbsp;<a href="http://slick.typesafe.com/doc/3.0.0/database.html#databaseconfig">http://slick.typesafe.com/doc/3.0.0/database.html#databaseconfig</a></p>
+<p>Thanks for trying it out, and taking the time to write about your experience.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-a6661dcc-47cb-43fb-9ad5-3e9815264f92.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+June 25 at 04:53 AM by <a href="../users/11.html">/users/11</a>
+in programming
+in reply to <a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a>
+<a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-a6661dcc-47cb-43fb-9ad5-3e9815264f92.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>i am having the same problem</p>
+<p>rovisionException: Unable to provision, see the following errors: 1) No implementation for play.api.db.slick.DatabaseConfigProvider was bound. while locating play.api.db.slick.DatabaseConfigProvider for parameter 0 at repo.StudentRepo.&lt;init&gt;(StudentRepo.scala:17) while locating repo.StudentRepo for parameter 0 at controllers.LoginController.&lt;init&gt;(LoginController.scala:24) while locating controllers.LoginController for parameter 6 at router.Routes.&lt;init&gt;(Routes.scala:47) while locating router.Routes while locating play.api.inject.RoutesProvider while locating play.api.routing.Router for parameter 0 at play.api.http.JavaCompatibleHttpRequestHandler.&lt;init&gt;(HttpRequestHandler.scala:200) while locating play.api.http.JavaCompatibleHttpRequestHandler while locating play.api.http.HttpRequestHandler</p>
+<p>my build.sbt</p>
+<p>&nbsp;</p>
+<pre>name := """demo"""<br/><br/>version := "1.0-SNAPSHOT"<br/><br/>lazy val root = (project in file(".")).enablePlugins(PlayScala)<br/><br/>scalaVersion := "2.11.7"<br/><br/>libraryDependencies ++= Seq(<br/>  cache,<br/>  ws,<br/>  specs2 % Test,<br/>  "org.webjars" %% "webjars-play" % "2.5.0-1",<br/>  "org.webjars" % "bootstrap" % "3.1.1-2",<br/>  "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3",<br/>  "com.typesafe.play"   %%   "play-slick"              %   "1.1.1",<br/>  "com.h2database"    %     "h2"                    %   "1.4.187" ,<br/>  "org.postgresql" % "postgresql" % "9.4-1206-jdbc4",<br/>  "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3",<br/>  "ch.qos.logback"       %     "logback-classic"          %      "1.1.3",<br/>  "com.typesafe.play" %% "play-slick-evolutions" % "1.1.1",<br/>  "com.typesafe.slick" %% "slick-hikaricp" % "3.1.1",<br/>  "com.typesafe.slick"   %%    "slick"                   %      "3.1.1",<br/>  "org.seleniumhq.selenium" % "selenium-server" % "2.52.0",<br/>  "org.seleniumhq.selenium" % "selenium-firefox-driver" % "2.52.0",<br/>  "org.scalatest" %% "scalatest" % "2.2.1" % "test",<br/>  "org.scalatestplus" %% "play" % "1.4.0-M3" % "test",<br/>  "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % "2.52.0"<br/><br/>)<br/>javaOptions in Test += "-Dconfig.file=conf/test.conf"<br/><br/>coverageExcludedPackages :="&lt;empty&gt;;router\\..*;"<br/><br/>resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"<br/><br/>// Play provides two styles of routers, one expects its actions to be injected, the<br/>// other, legacy style, accesses its actions statically.<br/>routesGenerator := InjectedRoutesGenerator<br/><br/><br/>resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"<br/><br/><br/><br/></pre>
+<p>&nbsp;</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+May 15 at 02:27 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">3 comments</a>
+</p>
+<div class="blog-post-body">
+<p><strong>UPDATE:</strong> This isn't a full tutorial. I plan on doing this in pieces. The code shown here is one example of one piece of the app. I'll delve more into the code later, but I thought that the issues I encountered while getting up and going were more important to write about initially. I hope that's not too confusing.</p>
+<hr/>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>It's been a while, but I finally have something interesting to write about.</p>
+<p>&nbsp;</p>
+<p>I've been dabbling with the <a href="https://www.playframework.com/">Play framework</a>&nbsp;again after some time. &nbsp;Work uses Java for a whole lot of stuff so I figured it'd behoove me to ease myself into the JVM again. &nbsp;I don't know Scala very well, but after a foray into Go and C#, looking at it now makes a lot more sense than when I first looked at it.</p>
+<p>I decided that I wanted to write a workout progress tracker. &nbsp;I'm getting married in August and I made it a goal a while back to put on some muscle weight, and put on some weight on the bar. &nbsp;I'd been struggling and struggling to get more weight up on the bar, and just couldn't be consistent. &nbsp;Long story short, it turns out a lot of it was my diet, probably almost all of it (but that's another story). &nbsp;My lifts started improving, I gained about 10-12 pounds, and I decided I wanted to see how far I've come since I started officially lifting again a few years ago.</p>
+<p>&nbsp;</p>
+<p>A few things have changed since I last looked at Play. &nbsp;For one, it uses the activator system to scaffold apps, run tests, install scala, etc. &nbsp;It's a little confusing, but really it's not so bad. &nbsp;I also had intended on using <a href="http://squeryl.org/">squeryl</a>&nbsp;for my database object stuff, but it looks like it hasn't been updated in a while and I remembered the agonizing pain I went through just to get it to work at all the last time I did this. So, I went with <a href="https://www.typesafe.com/community/core-tools/slick">slick</a>, play's endorsed <span style="text-decoration: line-through;">ORM</span> <a href="http://slick.typesafe.com/doc/3.0.0/introduction.html#functional-relational-mapping">FRM</a>. &nbsp;Specifically, I went with <a href="https://github.com/playframework/play-slick">play-slick</a>, which integrates slick directly into play itself. &nbsp;</p>
+<p>This was a little bit of a nightmare at first, because the tutorial for play initially sets you up with play 2.3.8 by default, and I wanted to be using the latest play-slick, as those docs seemed the most robust and up to date, which requires:&nbsp;</p>
+<ol>
+<li>Play version 2.4.x</li>
+<li>Slick version 3.0.x</li>
+<li>Scala version 2.10.x/2.11.x</li>
+</ol>
+<p>The issue I ran into, that frustrated me to no end, was the fact that the tutorials don't specify which specific versions of each you need. &nbsp;I just looked through my commit history to try to find specifics, and I started convulsing, so long story short: if you're getting a lot of errors trying to find dependencies, make sure your build.sbt has at least a couple resolvers for the typesafe repository, and google the latest version for your dependency and try using that. &nbsp;Here are my plugin.sbt and build.sbt for reference (I went ahead and made a gist so that they remain tied to this post's version, here's the repo in case you are from the future and want to see something that may be more up to date:&nbsp;<a href="https://github.com/dhoss/steel">https://github.com/dhoss/steel</a>):&nbsp;<a href="https://gist.github.com/dhoss/1a824ee5397f22eec0ac">https://gist.github.com/dhoss/1a824ee5397f22eec0ac</a>.</p>
+<p><strong>ANOTHER NOTE BEFORE I GO FURTHER:</strong> I felt like a complete idiot for this, but adding a resolver in plugins.sbt doesn't necessarily mean it's going to be available in build.sbt. &nbsp;I'm sure this is incredibly naive and dumb, but I spent a lot of time yelling at my screen trying to figure out why nothing was being pulled down from the repo I had just added. &nbsp;I ended up just adding the resolvers to both build.sbt and plugins.sbt. &nbsp;Like they say, "shoot 'em all and let God sort 'em out."</p>
+<p>&nbsp;</p>
+<p>The last thing I really needed to get sorted was this nagging issue where my app couldn't connect to postgres. &nbsp;Postgres was running, I could connect to it using the same username and password, but the app couldn't do it. Again, this was something minor that turned out to be in front of my face the whole time, but because I wasn't able to find a&nbsp;lot of documentation on slick driver connection configuration. &nbsp;This one line was all that was standing between me and glory:</p>
+<p>
+<script src="https://gist.github.com/dhoss/1c24abebe8e11ccaea19.js"></script>
+</p>
+<p>&nbsp;This needs to go before a line that looks like this:</p>
+<p>
+<script src="https://gist.github.com/dhoss/1a1e3a6b03c8aa922ed6.js"></script>
+</p>
+<p>&nbsp;</p>
+<p>This really confused me for a while, so&nbsp;I can help keep others from this same frustration.</p>
+<p>Moving on to some code.</p>
+<p><strong>Make sure you read through this and get everything set up first: <a href="https://www.playframework.com/documentation/2.4.x/Home">https://www.playframework.com/documentation/2.4.x/Home</a>&nbsp;</strong></p>
+<p>I decided to go with a DAO set up for my database access, because the <a href="https://github.com/playframework/play-slick/tree/master/samples/computer-database">initial code I was following&nbsp;</a>&nbsp;is set up as such and it seemed reasonably simple and flexible. &nbsp;You do have to write your CRUD methods, but I found it nice to be able to control exactly what you want those doing.</p>
+<p>For starters, let's define our model. &nbsp;In this case, we basically define our table structure in relatively broad strokes.</p>
+<p>
+<script src="https://gist.github.com/dhoss/dc6d5caada2e2281ab75.js"></script>
+</p>
+<p>Simple enough. &nbsp;Remember, you still need to write the actual SQL to create these tables with play evolutions.</p>
+<p>Next, let's take a look at one of our DAOs.</p>
+<p>
+<script src="https://gist.github.com/dhoss/5b2f9b8007cf725be254.js"></script>
+</p>
+<p>We define our column methods, and a * projection that acts how would expect it would with SQL. &nbsp;Next, we create a class that sets up the dbConfig, our query object (exerciseTypes), a method to map ids to names for option dropdowns, and our insert and list methods. &nbsp;Fairly simple.</p>
+<p>Per TDD, here is a small test that makes sure we can insert and retrieve things:</p>
+<p>
+<script src="https://gist.github.com/dhoss/dec361f2c11eee2e3270.js"></script>
+</p>
+<p>Nothing out of the ordinary here either.</p>
+<p>So, this concludes things for now. &nbsp;I've got a ways to go on my scala skills, and this app certainly has a bit to go as well. &nbsp;I'm hoping to document the app's progress and post any "gotchas" I run into from here on out as well.</p>
+<p><span style="text-decoration: line-through;">Next time, I'll try to demonstrate how to add a datatable for quick CRUD and sorting</span> (Part 2:&nbsp;<a href="../playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">http://stonecolddev.in/posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing</a>)</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-320af56f-ab40-4321-984e-dd07ebf4c9c3.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+(draft) by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-8a76baaf-db32-40cb-8852-8dea9e392e82.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a>
+<a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-320af56f-ab40-4321-984e-dd07ebf4c9c3.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Thanks! I was actually searching for what to call it but fell short. I'll update the article with that as well.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-8a76baaf-db32-40cb-8852-8dea9e392e82.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+May 18 at 07:02 AM by <a href="../users/3.html">/users/3</a>
+in programming
+in reply to <a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a>
+<a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-8a76baaf-db32-40cb-8852-8dea9e392e82.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>By the way, Slick is a FRM (<a href="http://slick.typesafe.com/doc/3.0.0/introduction.html#functional-relational-mapping">http://slick.typesafe.com/doc/3.0.0/introduction.html#functional-relational-mapping</a>), not a ORM.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4.html">Quick and Dirty How To - Trees in SQL + Postgres + Rails 4</a></h2>
+<p class="blog-post-meta">
+October 02 at 08:19 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p><strong>Intro</strong></p>
+<p>I'm going to give a quick rundown on how I implemented threaded comments in this app.</p>
+<p>I'm using Postgres 9.4 (recursive queries have been available since 8.4), and Rails 4.</p>
+<p>&nbsp;</p>
+<p><strong>The Query</strong></p>
+<p>&nbsp;</p>
+<p>I wrote a little gem called&nbsp;<a href="https://github.com/dhoss/treeify">Treeify</a>, and (right now) it just gives us a little wrapper around some recursive SQL queries. &nbsp;Here's the main method we are concerned with:</p>
+<pre style="padding-left: 30px;">def tree_sql(instance)<br/>  "WITH RECURSIVE cte (id, path) AS (<br/>     SELECT id,<br/>       array[id] AS path<br/>     FROM #{table_name}<br/>     WHERE id = #{instance.id}<br/>     UNION ALL<br/>     SELECT #{table_name}.id,<br/>            cte.path || #{table_name}.id<br/>     FROM #{table_name}<br/>     JOIN cte ON #{table_name}.parent_id = cte.id<br/>    )"<br/> end</pre>
+<p>&nbsp;</p>
+<p>This generates some SQL that ends up looking like this:</p>
+<pre style="padding-left: 30px;">SELECT "posts".* FROM "posts" WHERE (posts.id IN (WITH RECURSIVE cte (id, path) AS (<br/> SELECT id,<br/> array[id] AS path<br/> FROM posts<br/> WHERE id = 7<br/>UNION ALL<br/>SELECT posts.id,<br/> cte.path || posts.id<br/> FROM posts<br/> JOIN cte ON posts.parent_id = cte.id<br/> )<br/> SELECT id FROM cte<br/> ORDER BY path)) ORDER BY posts.id</pre>
+<p>This does alright performance-wise, although I'd much rather not have the "IN" portion there and have it do a JOIN or something instead, as I believe that would be faster, but I digress.</p>
+<p>So, moving on, we have a method called "descendents" which basically grabs all the desecendents for a given post:</p>
+<pre style="padding-left: 30px;">def descendents<br/>  self_and_descendents - [self]<br/>end</pre>
+<p>self_and_descendents simply grabs the whole tree, descendents just removes the root of the tree. &nbsp;This gives us our tree of descendents, which ends up looking something like this (after a little bit of serialization - we'll get to that):</p>
+<pre style="padding-left: 30px;">[{"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing"},<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf"},<br/> {"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing"},<br/> {"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing"}]</pre>
+<p>Cool! &nbsp;Our whole tree in one query.</p>
+<p>But, it's not a tree, it's just a hash. &nbsp;We need a tree or it will look really weird when we display it. &nbsp;Let's fix that.</p>
+<p>Let's create a method in our model called "build_tree". &nbsp;We can pass it our results from our descendents method, which I do like so:</p>
+<pre style="padding-left: 30px;"> def reply_tree<br/>   # give build_tree an array of hashes with <br/>   # the AR objects serialized into a hash<br/>   build_tree(descendents.to_a.map(&amp;:serializable_hash))<br/> end&nbsp;</pre>
+<p>This just turns our descendents data into a serializable hash, which could be turned into JSON, or mangled more easily, like so:</p>
+<p>&nbsp;</p>
+<pre style="padding-left: 30px;">def build_tree(data)<br/>  # turn our AoH into a hash where we've mapped the ID column<br/>  # to the rest of the hash + a comments array for nested comments<br/>  nested_hash = Hash[data.map{|e| [e['id'], e.merge('comments' =&gt; [])]}]<br/>  # if we have a parent ID, grab all the comments<br/>  # associated with that parent and push them into the comments array<br/>  nested_hash.each do |id, item|<br/>    nested_hash[id]['name'] = item['user_id'] ? User.find(item['user_id']).name : "Anonymous"<br/>    parent = nested_hash[item['parent_id']]<br/>    parent['comments'] &lt;&lt; item if parent<br/>  end<br/>   # return the values of our nested hash, ie our actual comment hash data<br/>   # reject any descendents whose parent ID already exists in the main hash so we don't<br/>   # get orphaned descendents listed as their own comment<br/>   nested_hash.reject{|id, item|<br/>     nested_hash.has_key? item['parent_id']<br/>   }.values<br/> end</pre>
+<p>Let's walk through this a little bit.</p>
+<p>First, we want to turn our array of hashes into a nested hash, since we are dealing with tree data.</p>
+<p>nested_hash = Hash[data.map{|e| [e['id'], e.merge('comments' =&gt; [])]}]<br/><br/>This casts the data variable (our array of hashes) as a hash, and maps each id to a the original hash (the comment data itself), and merges in a new key called "comments" that's assigned to an empty array. &nbsp;This sets us up for our nested comments.</p>
+<p>At this point, our data structure looks like this:&nbsp;</p>
+<pre style="padding-left: 30px;">{20=&gt;<br/> {"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing",<br/> "comments"=&gt;[]},<br/> 21=&gt;<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf",<br/> "comments"=&gt;[]},<br/> 22=&gt;<br/> {"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;[]},<br/> 23=&gt;<br/> {"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[]}}</pre>
+<p>As you can see like I mentioned earlier, we have a hash with each comment's ID as the key and the value is the actual comment data.</p>
+<p>Next step, we want to load up the sub-comments.</p>
+<pre style="padding-left: 30px;"> nested_hash.each do |id, item|<br/>   nested_hash[id]['name'] = item['user_id'] ? User.find(item['user_id']).name : "Anonymous"<br/>   parent = nested_hash[item['parent_id']]<br/>   parent['comments'] &lt;&lt; item if parent<br/> end</pre>
+<p>This basically traverses the current hash and checks to see if the current node has a parent ID that matches an ID in the hash, and pushes that data into the 'comments' array.</p>
+<p>This is what it ends up looking like:</p>
+<pre style="padding-left: 30px;">{20=&gt;<br/> {"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"},<br/> 21=&gt;<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf",<br/> "comments"=&gt;<br/> [{"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;<br/> [{"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"},<br/> 22=&gt;<br/> {"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;<br/> [{"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"},<br/> 23=&gt;<br/> {"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}}</pre>
+<p>&nbsp;</p>
+<p>We now have populated sub-comments.</p>
+<p>The final step is to make sure sub-comments are only displayed in their respective array.</p>
+<pre style="padding-left: 30px;">nested_hash.reject{|id, item| <br/>  nested_hash.has_key? item['parent_id']<br/>}.values</pre>
+<p>Iterate over the hash, rejecting anything that has a parent_id that exists in the top-most level of the hash, and return the values of the "good" keys.</p>
+<p>Giving us:</p>
+<pre style="padding-left: 30px;">[{"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"},<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf",<br/> "comments"=&gt;<br/> [{"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;<br/> [{"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"}]</pre>
+<p>...a nice tree-like structure we can iterate over in whatever we choose for a view. &nbsp;Disregard the extra "name"=&gt;".." bits, I'm still working out how to best retrieve author data and am currently using a hacky and ugly method to do so.</p>
+<p>&nbsp;</p>
+<p>That's all for now. &nbsp;Hopefully this sheds some light on this sort of thing. &nbsp;Some improvements right off the bat would be to put the nested tree construction in the treeify gem, and to make the SQL less clunky so we can mold it a little more, and get associated data easier (like author info).&nbsp;</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres: Part 2 - Testing</a></h2>
+<p class="blog-post-meta">
+May 22 at 03:48 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Hi all, &nbsp;back again with the second part of the play scala+slick+postgres adventure.</p>
+<p>In <a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">part 1</a>, I touched on some of the hurdles I needed to overcome in order to get things up and running (<strong>UPDATE:</strong>. &nbsp;the docs have been updated, and Mirco has done a really good job of making this more clear: <a href="https://www.playframework.com/documentation/2.4.0/PlaySlick">https://www.playframework.com/documentation/2.4.0/PlaySlick</a>). &nbsp;In this article, I'd like to show you how to set up a quick and snappy testing environment.</p>
+<p>&nbsp;</p>
+<p>For starters, we will want a separate test database for postgres. &nbsp;For local tests, just manually create the database and user, and grant that user privileges to create tables, etc. on that database:&nbsp;</p>
+<p>
+<script src="https://gist.github.com/dhoss/e230ccb4c30ad902bd27.js"></script>
+</p>
+<p>Yes, I know, you don't need 3 psql calls to do this but it works and I'm extremely lazy.</p>
+<p>Now, let's start looking at the bigger picture. &nbsp;What if we wanted to set up continuous integration so we could have our tests run every time we git push'd? &nbsp;That sounds good, so let's do that with <a href="https://travis-ci.org/">Travis CI</a>. &nbsp;I'll leave it up to you to get your repository and account set up. &nbsp;Once that's done, check out the next part.</p>
+<p>Travis CI makes setting up CI testing with all sorts of things really easy. &nbsp;Basically, you just create a file named ".travis.yml" with your configuration options, add it to your repo&nbsp;(I've only done this with github, I don't know how other git hosts work with Travis) and it takes care of the rest after you commit it and push. &nbsp;Here's the one we're going to be working off of:</p>
+<p>
+<script src="https://gist.github.com/dhoss/61fb981fc597549a4a26.js"></script>
+</p>
+<p>Very simply, we tell Travis we're using&nbsp;scala,&nbsp;java 8, specifying a shell script which will kick off our tests (source shown below), and that we want to use postgres and have it run the commands in before_script prior to running our tests. &nbsp;Here's the script that runs our tests:</p>
+<p>
+<script src="https://gist.github.com/dhoss/72586b1a1078fb851cc7.js"></script>
+</p>
+<p>Briefly, this checks for an environment variable called <code>STEEL_TEST_LOCAL</code> being set to 1, which, if present, tells us we should nuke the current test tables so we can start clean for this upcoming test run. &nbsp;Set this on your local environment so you have fresh and clean test tables prior to each test run. &nbsp;Travis doesn't care about this since it tears everything down automatically at the end of the test.</p>
+<p>The next line uses a tool called <a href="http://flywaydb.org/">Flyway</a>&nbsp;to migrate our database changes. &nbsp;I actually really like Flyway, thusfar at least, because it was extremely easy to set up and start using. &nbsp;It completely blows Play's evolutions out of the water. &nbsp;Let's set that up really quick.</p>
+<p>Add the Flyway dependencies and configuration to your build.sbt, like so:</p>
+<p>
+<script src="https://gist.github.com/dhoss/ce37695ecf89cbdb9260.js"></script>
+</p>
+<p>The one thing here that needs explaining is the flywayLocations key. &nbsp;To specify a path on the filesystem (local to where your tests are being run out of, so most likely your app root), you pass something like <code>Seq('filesystem:path_to_sql_files')</code>.</p>
+<p>So, we have flyway set up for migrations, the next step is to create some migrations and have them applied. &nbsp;Flyway actually has excellent and extremely simple documentation on how to do this, and since we're using sbt to manage our tests, here's the introduction to do so:&nbsp;<a href="http://flywaydb.org/getstarted/firststeps/sbt.html">http://flywaydb.org/getstarted/firststeps/sbt.html</a>.</p>
+<p>Backing up slightly, I want to explain one more line in the build.sbt file:</p>
+<p><code>javaOptions in <span class="pl-en">Test</span> <span class="pl-k">++</span><span class="pl-k">=</span> <span class="pl-en">Seq</span>(<span class="pl-s"><span class="pl-pds">"</span>-Dconfig.file=conf/test.conf<span class="pl-pds">"</span></span>)</code></p>
+<p>This is all you need to specify a different configuration file for your test environment. &nbsp;This is really useful because you can just copy conf/application.conf, and change the database credentials to match your test environment, and it will automatically be picked up when your tests run (example here:&nbsp;<a href="https://github.com/dhoss/steel/blob/207ce910e668457c3870446322d98e94f5271f88/conf/test.conf#L40">https://github.com/dhoss/steel/blob/207ce910e668457c3870446322d98e94f5271f88/conf/test.conf#L40</a>)</p>
+<p>So, back to setting up our CI environment. &nbsp;In our run_tests.sh script, we:</p>
+<ol>
+<li>check if we are running locally, and if so, nuke the test database</li>
+<li>otherwise, we run our migrations with flyway + sbt, and because flyway lets us do so, we override the default database configuration parameters and set them to our test's parameters.</li>
+<li>lastly, we finally call sbt to run ours tests with <code>sbt +test</code></li>
+</ol>
+<p>That's pretty much it. &nbsp;I found it very simple to get a small, no-nonsense, test environment set up that transfers over quite nicely to a relatively robust CI solution.&nbsp;</p>
+<p>Next time, I'm planning on discussing some more application specific things dealing with getting your queries right with slick under this set up.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/caching-caching-caching-and-more-caching.html">Caching, Caching, Caching and More Caching</a></h2>
+<p class="blog-post-meta">
+October 09 at 07:25 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/caching-caching-caching-and-more-caching.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>So I updated the site code to do some more caching. &nbsp;Things are going quite a bit faster between the Varnish ESI caching and the redis caching for fragments and such.</p>
+<p>Still need to figure out how to get the gallery pages' images caching properly, but as long as the main page and reply trees are cached, the rails app itself will bear less of a burden.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/replies-are-enabled.html">Replies Are Enabled</a></h2>
+<p class="blog-post-meta">
+October 01 at 09:26 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/replies-are-enabled.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>So I've managed to get replies working to my liking. &nbsp;I'll write more about the implementation later.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-replies-are-enabled.html">RE: Replies Are Enabled</a></h2>
+<p class="blog-post-meta">
+October 01 at 09:27 PM by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/replies-are-enabled.html">Replies Are Enabled</a>
+<a href="../posts/re-replies-are-enabled.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Testing replies!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-re-replies-are-enabled.html">RE: RE: Replies Are Enabled</a></h2>
+<p class="blog-post-meta">
+October 01 at 09:27 PM by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/re-replies-are-enabled.html">RE: Replies Are Enabled</a>
+<a href="../posts/re-re-replies-are-enabled.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Testing replies to replies!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/uploads-and-mina.html">Uploads and Mina</a></h2>
+<p class="blog-post-meta">
+September 19 at 02:18 AM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/uploads-and-mina.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Mina creates a new directory for each release, and does an ln -s to the shared directory in the root app directory (for logs, app server sockets/pids, etc). &nbsp;This is great and all but it's a pain in the ass for uploads, especially with Carrierwave. &nbsp;If I provide the absolute path to the directory I want to write to, it works okay. &nbsp;It won't display properly though, because it uses the absolute path instead of the relative when it constructs the URL. &nbsp;If I use the relative URL, images that have already been uploaded display properly, but it won't write to the directory properly, as in, it won't write to the symlinked shared/ directory. &nbsp;I have no fucking clue why, so I'm just going to use Fog and S3 since it'll be much cheaper anyway.</p>
+<p>&nbsp;</p>
+<p>This is a learning experience.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/good-news-everyone.html">Good news, everyone!</a></h2>
+<p class="blog-post-meta">
+September 19 at 04:30 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/good-news-everyone.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>After struggling around with mina and symbolic links, I decided just to go with S3. &nbsp;Changing carrierwave around to use fog+s3 was a snap.&nbsp;</p>
+<p>I had originally had it set up that way, but I was trying to do dumb things with the filenames and it wasn't working properly. &nbsp;Looks like things are doing ok now though.</p>
+<p>In the next "patch" I'm going to fix this fucking tinymce editor.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/mina-and-migrations.html">Mina and Migrations</a></h2>
+<p class="blog-post-meta">
+September 18 at 08:36 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/mina-and-migrations.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I've been using mina (<a href="https://github.com/mina-deploy/mina">https://github.com/mina-deploy/mina</a>) for deployments, and overall it's pretty great. &nbsp;However, I just tried to create this column type migration and it just blew right past it in the deployment. &nbsp;I'm going to see if I can file a bug about it.</p>
+<p>I went ahead and ran the migration manually, which blows, but hopefully I'll get this resolved.</p>
+<p>On the plus side, I can now write more in my posts.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/kodiak-a-cms.html">Kodiak - A CMS</a></h2>
+<p class="blog-post-meta">
+September 18 at 08:14 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/kodiak-a-cms.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I've been working on <a href="https://github.com/dhoss/Kodiak">Kodiak </a>for over a year. &nbsp;</p>
+<p>I finally got it to a point that it's reasonably tested, feature-ful enough to be useful, and convenient, and reliable and found a deployment solution that I like.</p>
+<p>&nbsp;</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/links-work.html">Links Work</a></h2>
+<p class="blog-post-meta">
+September 21 at 05:11 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/links-work.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I have enabled the full-featured TinyMCE editor for creating posts, so now I can spam links. &nbsp;Most excellent!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/rails-asset-compression.html">Rails Asset Compression</a></h2>
+<p class="blog-post-meta">
+September 23 at 11:16 AM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/rails-asset-compression.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I decided to give Google's&nbsp;<a href="https://developers.google.com/closure/compiler/">Closure Compiler</a>&nbsp;a try for this CMS. &nbsp;I'm really happy with the amount of compression you can obtain (I don't personally have exact numbers, but I know my largest Javascript asset compressed down by at least half). &nbsp;The one issue I have is the amount of time it takes (this link is a little old, but I can't find many new benchmarks comparing YUI and Closure:&nbsp;<a href="http://scoop.simplyexcited.co.uk/2009/11/24/yui-compressor-vs-google-closure-compiler-for-javascript-compression/">http://scoop.simplyexcited.co.uk/2009/11/24/yui-compressor-vs-google-closure-compiler-for-javascript-compression/</a>).</p>
+<p>&nbsp;</p>
+<p>This seems to speed page loading up a reasonable (at least noticeable) amount. &nbsp;I'd like to get the load time for adsense and analytics externals down, but overall it's not horrible. &nbsp;I'm going to set up&nbsp;<a href="https://www.varnish-cache.org/">Varnish</a>&nbsp;for a reverse proxy cache and set up&nbsp;<a href="http://redis.io/">Redis</a>&nbsp;for caching expensive database calls, once I've determined which are the most costly.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-re-re-replies-are-enabled.html">RE: RE: RE: Replies Are Enabled</a></h2>
+<p class="blog-post-meta">
+October 01 at 09:27 PM by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/re-re-replies-are-enabled.html">RE: RE: Replies Are Enabled</a>
+<a href="../posts/re-re-re-replies-are-enabled.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Testing replies to replies to replies!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/look-i-got-featured.html">Look, I Got Featured!</a></h2>
+<p class="blog-post-meta">
+October 09 at 10:19 AM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/look-i-got-featured.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>A kind soul submitted&nbsp;<a href="quick-and-dirty-how-to-trees-in-sql-postgres-rails-4.html">Quick and Dirty How To - Trees in SQL + Postgres + Rails 4</a>&nbsp;to&nbsp;<a href="http://postgresweekly.com/issues/76">Postgres Weekly</a>. &nbsp;Whoever you are, thanks!</p>
+<p>&nbsp;</p>
+<p>In that same vein, I have an issue opened on&nbsp;<a href="http://github.com/dhoss/Treeify">Treeify</a>&nbsp;to add a readme and some examples, so I'll be writing up a post about how to use that within the next day or so.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/application-configuration-using-rails-4-postgres-9-4-and-json.html">Application Configuration Using Rails 4 + Postgres 9.4 and JSON</a></h2>
+<p class="blog-post-meta">
+October 09 at 12:46 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/application-configuration-using-rails-4-postgres-9-4-and-json.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+fart
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/calculating-aws-s3-storage-usage-with-csv-textql.html">Calculating AWS S3 Storage Usage With CSV+TextQL</a></h2>
+<p class="blog-post-meta">
+(draft) by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/calculating-aws-s3-storage-usage-with-csv-textql.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>fart</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/treeify-0-03-release.html">Treeify 0.03 Release</a></h2>
+<p class="blog-post-meta">
+October 09 at 12:59 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/treeify-0-03-release.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p><a href="https://rubygems.org/gems/treeify">Treeify 0.03</a>&nbsp;has been released. &nbsp;I'll put something together that generates a reasonable changelog in the future, but for now, the biggest changes are:</p>
+<p>&nbsp;</p>
+<ol>
+<li>An actual README, so you can sort of figure out how to use it.</li>
+<li>A new method called "descendent_tree" which returns an array of hashes in a nested format, resembling a tree structure which is mighty handy for passing to a Rails view or serializing to JSON and traversing with Javascript.</li>
+</ol>
+<p>All tests pass, which is good enough for me now. &nbsp;I'll test this new version with the Kodiak build running this site soon enough and hopefully it won't break too much.</p>
+<p>&nbsp;</p>
+<p>Thanks to github user&nbsp;<a href="https://github.com/espen">espen</a>&nbsp;for opening the issue to create a README and motivate me to clean things up and get a reasonable release out.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-re-handling-increased-load.html">RE: RE: Handling Increased Load</a></h2>
+<p class="blog-post-meta">
+October 13 at 02:42 PM by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/re-handling-increased-load.html">RE: Handling Increased Load</a>
+<a href="../posts/re-re-handling-increased-load.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p><strong>tesing</strong></p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-handling-increased-load.html">RE: Handling Increased Load</a></h2>
+<p class="blog-post-meta">
+October 13 at 02:41 PM by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/handling-increased-load.html">Handling Increased Load</a>
+<a href="../posts/re-handling-increased-load.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>testing&nbsp;</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/handling-increased-load.html">Handling Increased Load</a></h2>
+<p class="blog-post-meta">
+October 11 at 02:18 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/handling-increased-load.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>On top of being submitted to Postgres Weekly, my <a href="../posts/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4.html">rails 4 + postgres trees tutorial</a>&nbsp;was submitted to Ruby Weekly, so there has been a pretty drastic increase in load as of late, which is great!</p>
+<p>I'm using <a href="http://pingdom.com/">Pingdom</a>&nbsp;and Google Analytics/Adsense to gauge where people are coming from and what kind of load this site is dealing with, and while not super substantial, I've tried to make some improvements to keep the site load times down around a few seconds (there have in the past been a few minute long spikes, probably due to an influx of readers).</p>
+<p>What surprised me was a) how much caching even small database calls helps out in the long run, and b) the bottleneck STILL isn't at the database level, but mostly around serving assets. I've compressed the hell out of my CSS and Javascript, but not using progressive jpegs and setting appropriate caching levels (browser caching, etc) for them.</p>
+<p>I mention images because it's been a little more difficult to flat out cache them like I normally would other assets as they are being served from S3 and have an expire time associated with them, and if the image url is cached beyond the expire time, the image has a really difficult time being displayed properly.</p>
+<p>One of the things I've been looking at is progressive jpeg compression, where I convert everything that's not a gif to a jpg and strip out a lot of the profiles and compress things down a bit (quality can be reduced significantly, especially in thumbnails, without a significant loss in image quality) to reduce image size and thus allow for better respones times and lower bandwidth. <a href="https://coderwall.com/p/ryzmaa">Some of this</a>&nbsp;is <a href="https://github.com/carrierwaveuploader/carrierwave/wiki/Efficiently-converting-image-formats">detailed</a>&nbsp;in the <a href="https://github.com/carrierwaveuploader/carrierwave">CarrierWave documentation</a>, the image processor I use.</p>
+<p>Another option, after optimization, is to start using Cloudfront. I think the cost would be negligible, and it would pretty much handle all of the static asset caching and such, rendering anything on my side not necessary beyond Rails fragment and action caching. It's fascinating to begin to see the "macro" level that performance optimizations are needed on with web development.</p>
+<p>I'm used to doing a lot of under-the-hood behind-the-scenes API work that involves optimization of processing data in one form or another, but not necessarily "let's make this entire page smaller so the request returns faster and only needs to be performed once every few minutes."</p>
+<p>More on this soon!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/golang-application-namespacing.html">Golang Application Namespacing</a></h2>
+<p class="blog-post-meta">
+January 20 at 01:33 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/golang-application-namespacing.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I'm no guru when it comes to golang intricacies, and this one actually put me off go a few times, but I've finally figured out how to have your library and instance application play together in the same directory for go apps.</p>
+<p>&nbsp;</p>
+<p>Here's a little clarification:</p>
+<p>&nbsp;</p>
+<p>
+<script src="https://gist.github.com/dhoss/5ab49f0b24741b49f406.js"></script>
+</p>
+<p>This is the basic go app structure that you're told to use from day one (so sayeth&nbsp;<a href="https://golang.org/doc/code.html">https://golang.org/doc/code.html</a>). &nbsp;It is correct.</p>
+<p>However, this doesn't really help address say, "what if I want my library that I wrote and my application using it to live in the same git repository?"</p>
+<p>The problem I run into is some sort of namespace clashing, where go complains about "package main" and "package myapp" existing in the same place.</p>
+<p>Long story short, my solution was to create an "app" directory underneath my library's root directory, like this:</p>
+<p>
+<script src="https://gist.github.com/dhoss/bdbcc00c649db1dd4497.js"></script>
+</p>
+<p>This seems to do the trick for my purposes, allowing me to maintain my library and instance code in the same git repository while allowing everything to compile properly.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/treeify-0-05-released.html">Treeify 0.05 Released</a></h2>
+<p class="blog-post-meta">
+February 03 at 11:19 AM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="../posts/treeify-0-05-released.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I've released version 0.05 of&nbsp;<a href="https://rubygems.org/gems/treeify/versions/0.05.01">treeify</a>, mostly just updating gems. &nbsp;Here's the changelog:</p>
+<ul class="task-list">
+<li><a href="http://github.com/dhoss/treeify/commit/042b495403351278650773f38f054b74155e0701">Mon Feb 2 19:21:38 2015 -0700 - Added version 0.04 header</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/e658637296396aa9c9eb7bf466aff0a96b821bbe">Mon Feb 2 15:30:25 2015 -0700 - updated gems, this fixes #6</a></li>
+<li><a href="http://github.com/dhoss/treeify/commit/1e102a8a68b7e29c07f087f5e1ecd56cb37c4e9d">Thu Nov 6 15:34:49 2014 -0700 - updated changelog</a></li>
+</ul>
+<p>Also, slightly embarassing, it turns out I need to update the gemspec file with the last edited date. &nbsp;I thought that was the authored field.</p>
+<p>&nbsp;</p>
+<p>Anyway, enjoy!</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a></h2>
+<p class="blog-post-meta">
+(draft) by <a href="../users/1.html">Devin</a>
+in programming
+in reply to <a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a>
+<a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Wow! My first comments on this blog. &nbsp;Thanks for taking the time to check this out. &nbsp;</p>
+<p>I'll be sure to make the changes you mentioned, and update the article as well.</p>
+<p>&nbsp;</p>
+<p>Again, much appreciation for setting me straight, I've got lots more to write about in the coming weeks.</p>
+</div>
+<hr/>
+</div>
+ 
+<a href="../categories.html">Back</a>
+</div> 
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+<div class="sidebar-module sidebar-module-inset">
+<h4>About</h4>
+I myself dabbled in pacifism.
+</div>
+<div class="sidebar-module sidebar-module-inset">
+<form action="http://stonecolddev.in/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;"/>
+<label for="q">Search for:</label>
+<input type="text" name="q" id="q"/>
+<input type="submit" name="commit" value="Search"/>
+</form>
+</div>
+<div class="sidebar-module">
+<h4>Recent Activity</h4>
+<hr/>
+<p>Posts:</p>
+<ol class="list-unstyled">
+<li><a href="../posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-a6661dcc-47cb-43fb-9ad5-3e9815264f92.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 25 at 04:53 AM by <a href="../users/11.html">/users/11</a></li>
+<li><a href="../posts/rss-is-up.html">RSS is up!</a> on August 02 at 08:01 PM by <a href="../users/1.html">Devin</a></li>
+<li><a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-995d37b5-dd73-4026-a230-f42916315523.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 07 at 06:18 PM by <a href="../users/4.html">/users/4</a></li>
+<li><a href="../posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres: Part 2 - Testing</a> on May 22 at 03:48 PM by <a href="../users/1.html">Devin</a></li>
+<li><a href="../posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-8a76baaf-db32-40cb-8852-8dea9e392e82.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on May 18 at 07:02 AM by <a href="../users/3.html">/users/3</a></li>
+</ol>
+<hr/>
+</div>
+<div class="sidebar-module">
+<h4>Categories</h4>
+<ol class="list-unstyled">
+<li><a href="tech-help.html">Tech Help</a></li>
+<li><a href="code-snippets.html">code-snippets</a></li>
+<li><a href="devops.html">devops</a></li>
+<li><a href="9.html">weightlifting</a></li>
+<li><a href="8.html">ux</a></li>
+<li><a href="7.html">nerd</a></li>
+<li><a href="programming.html">programming</a></li>
+<li><a href="general.html">general</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Archives</h4>
+<ol class="list-unstyled">
+<li><a href="../0/00.html">
+0</a></li>
+<li><a href="../2016/06.html">
+June 2016</a></li>
+<li><a href="../2015/08.html">
+August 2015</a></li>
+<li><a href="../2015/06.html">
+June 2015</a></li>
+<li><a href="../2015/05.html">
+May 2015</a></li>
+<li><a href="../2015/02.html">
+February 2015</a></li>
+<li><a href="../2015/01.html">
+January 2015</a></li>
+<li><a href="../2014/12.html">
+December 2014</a></li>
+<li><a href="../2014/11.html">
+November 2014</a></li>
+<li><a href="../2014/10.html">
+October 2014</a></li>
+<li><a href="../2014/09.html">
+September 2014</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Elsewhere</h4>
+<ol class="list-unstyled">
+<li><a href="http://twitter.com/stonecolddevin">twitter</a></li>
+<li><a href="http://github.com/dhoss">github</a></li>
+</ol>
+</div>
+</div> 
+</div> 
+</div> 
+<div class="footer">
+<p>Copyright &copy; <a href="../index.html">Devin Austin</a>.</p>
+<p>
+<a href="#">Back to top</a>
+</p>
+</div>
+<script src="../assets/application-2cfc6678b490e33002a68236b6c5d4a3691723d70b06c0e5e9fb52934470efbe.js" async="async"></script>
+<script src="../assets/categories-0b49e5589c0b754795ec3744e394bb16c1bb4934cadb70d2488c99e8fcb8976d.js" async="async"></script>
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-44716474-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+
+<!-- Mirrored from stonecolddev.in/categories/programming by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:25 GMT -->
+</html>

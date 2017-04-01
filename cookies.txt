@@ -1,0 +1,5 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+stonecolddev.in	TRUE	/	FALSE	1999999999	_session_id	8050d5cdc8117d85c107c0340f745eb5
+.stonecolddev.in	TRUE	/	FALSE	1999999999	__cfduid	df70508ed7fdce2ead72c60616c61d09c1491085667
+

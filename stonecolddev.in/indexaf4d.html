@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from stonecolddev.in/?page=5 by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:11 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" type="application/rss+xml" title="Stonecold Devin RSS Feed" href="feed.rss">
+<title>OSI: Office of Secret Intelligence</title>
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="vqZS5xw/2cP6sXXBkHVeNIMwlQytn5Mmc85yr4b/DaYY8IIULSQ+v7Q8r6jT5s/4LrKIQE0ngM9fmg4j3PQBsw=="/>
+<link rel="stylesheet" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" media="all" href="assets/application-24d259c985a7529c30f10dfa51efa0eef10e104849c3303e76f286ffb833fbb2.css"/>
+<link rel="stylesheet" media="all" href="assets/home-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css"/>
+ 
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="images/apple-touch-icon-144x144-precomposed.html" sizes="144x144"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="images/apple-touch-icon-114x114-precomposed.html" sizes="114x114"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="images/apple-touch-icon-72x72-precomposed.html" sizes="72x72"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="images/apple-touch-icon-precomposed.html"/>
+ 
+ 
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.html"/>
+ 
+<script>
+      var _prum = [['id', '541bf1e1abe53d695828c003'],
+                   ['mark', 'firstbyte', (new Date()).getTime()]];
+      (function() {
+        var s = document.getElementsByTagName('script')[0]
+          , p = document.createElement('script');
+            p.async = 'async';
+            p.src = 'http://rum-static.pingdom.net/prum.min.js';
+            s.parentNode.insertBefore(p, s);
+      })();
+    </script>
+</head>
+<body>
+<div class="blog-masthead">
+<div class="container">
+<div class="navbar navbar-default" role="navigation">
+ 
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="index.html">Office of Secret Intelligence</a>
+</div>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+<ul class="nav nav-pills">
+<li><a href="index.html">Home</a></li>
+<li><a href="users/sign_up.html">Sign up</a></li>
+<li><a href="users/sign_in.html">Sign in</a></li>
+<li><a href="index.html">Sign in with Twitter</a></li>
+<li class="dropdown">
+<a data-toggle="dropdown" class="dropdown-toggle" href="posts.html">Posts <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="posts.html">View All</a></li>
+</ul> 
+</li> 
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+ 
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8235962495693803" data-ad-slot="9909766461" data-ad-format="auto"></ins>
+<div class="blog-header">
+<h1 class="blog-title"><a href="index.html">Office of Secret Intelligence</a> </h1>
+<p class="lead blog-description">Who taught you to be a spy, fucking Gallagher!?! </p>
+</div>
+<div class="row">
+<div class="col-sm-8 blog-main">
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="posts/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4.html">Quick and Dirty How To - Trees in SQL + Postgres + Rails 4</a></h2>
+<p class="blog-post-meta">
+October 02 at 08:19 PM by <a href="users/1.html">Devin</a>
+in programming
+<a href="posts/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p><strong>Intro</strong></p>
+<p>I'm going to give a quick rundown on how I implemented threaded comments in this app.</p>
+<p>I'm using Postgres 9.4 (recursive queries have been available since 8.4), and Rails 4.</p>
+<p>&nbsp;</p>
+<p><strong>The Query</strong></p>
+<p>&nbsp;</p>
+<p>I wrote a little gem called&nbsp;<a href="https://github.com/dhoss/treeify">Treeify</a>, and (right now) it just gives us a little wrapper around some recursive SQL queries. &nbsp;Here's the main method we are concerned with:</p>
+<pre style="padding-left: 30px;">def tree_sql(instance)<br/>  "WITH RECURSIVE cte (id, path) AS (<br/>     SELECT id,<br/>       array[id] AS path<br/>     FROM #{table_name}<br/>     WHERE id = #{instance.id}<br/>     UNION ALL<br/>     SELECT #{table_name}.id,<br/>            cte.path || #{table_name}.id<br/>     FROM #{table_name}<br/>     JOIN cte ON #{table_name}.parent_id = cte.id<br/>    )"<br/> end</pre>
+<p>&nbsp;</p>
+<p>This generates some SQL that ends up looking like this:</p>
+<pre style="padding-left: 30px;">SELECT "posts".* FROM "posts" WHERE (posts.id IN (WITH RECURSIVE cte (id, path) AS (<br/> SELECT id,<br/> array[id] AS path<br/> FROM posts<br/> WHERE id = 7<br/>UNION ALL<br/>SELECT posts.id,<br/> cte.path || posts.id<br/> FROM posts<br/> JOIN cte ON posts.parent_id = cte.id<br/> )<br/> SELECT id FROM cte<br/> ORDER BY path)) ORDER BY posts.id</pre>
+<p>This does alright performance-wise, although I'd much rather not have the "IN" portion there and have it do a JOIN or something instead, as I believe that would be faster, but I digress.</p>
+<p>So, moving on, we have a method called "descendents" which basically grabs all the desecendents for a given post:</p>
+<pre style="padding-left: 30px;">def descendents<br/>  self_and_descendents - [self]<br/>end</pre>
+<p>self_and_descendents simply grabs the whole tree, descendents just removes the root of the tree. &nbsp;This gives us our tree of descendents, which ends up looking something like this (after a little bit of serialization - we'll get to that):</p>
+<pre style="padding-left: 30px;">[{"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing"},<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf"},<br/> {"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing"},<br/> {"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing"}]</pre>
+<p>Cool! &nbsp;Our whole tree in one query.</p>
+<p>But, it's not a tree, it's just a hash. &nbsp;We need a tree or it will look really weird when we display it. &nbsp;Let's fix that.</p>
+<p>Let's create a method in our model called "build_tree". &nbsp;We can pass it our results from our descendents method, which I do like so:</p>
+<pre style="padding-left: 30px;"> def reply_tree<br/>   # give build_tree an array of hashes with <br/>   # the AR objects serialized into a hash<br/>   build_tree(descendents.to_a.map(&amp;:serializable_hash))<br/> end&nbsp;</pre>
+<p>This just turns our descendents data into a serializable hash, which could be turned into JSON, or mangled more easily, like so:</p>
+<p>&nbsp;</p>
+<pre style="padding-left: 30px;">def build_tree(data)<br/>  # turn our AoH into a hash where we've mapped the ID column<br/>  # to the rest of the hash + a comments array for nested comments<br/>  nested_hash = Hash[data.map{|e| [e['id'], e.merge('comments' =&gt; [])]}]<br/>  # if we have a parent ID, grab all the comments<br/>  # associated with that parent and push them into the comments array<br/>  nested_hash.each do |id, item|<br/>    nested_hash[id]['name'] = item['user_id'] ? User.find(item['user_id']).name : "Anonymous"<br/>    parent = nested_hash[item['parent_id']]<br/>    parent['comments'] &lt;&lt; item if parent<br/>  end<br/>   # return the values of our nested hash, ie our actual comment hash data<br/>   # reject any descendents whose parent ID already exists in the main hash so we don't<br/>   # get orphaned descendents listed as their own comment<br/>   nested_hash.reject{|id, item|<br/>     nested_hash.has_key? item['parent_id']<br/>   }.values<br/> end</pre>
+<p>Let's walk through this a little bit.</p>
+<p>First, we want to turn our array of hashes into a nested hash, since we are dealing with tree data.</p>
+<p>nested_hash = Hash[data.map{|e| [e['id'], e.merge('comments' =&gt; [])]}]<br/><br/>This casts the data variable (our array of hashes) as a hash, and maps each id to a the original hash (the comment data itself), and merges in a new key called "comments" that's assigned to an empty array. &nbsp;This sets us up for our nested comments.</p>
+<p>At this point, our data structure looks like this:&nbsp;</p>
+<pre style="padding-left: 30px;">{20=&gt;<br/> {"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing",<br/> "comments"=&gt;[]},<br/> 21=&gt;<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf",<br/> "comments"=&gt;[]},<br/> 22=&gt;<br/> {"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;[]},<br/> 23=&gt;<br/> {"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[]}}</pre>
+<p>As you can see like I mentioned earlier, we have a hash with each comment's ID as the key and the value is the actual comment data.</p>
+<p>Next step, we want to load up the sub-comments.</p>
+<pre style="padding-left: 30px;"> nested_hash.each do |id, item|<br/>   nested_hash[id]['name'] = item['user_id'] ? User.find(item['user_id']).name : "Anonymous"<br/>   parent = nested_hash[item['parent_id']]<br/>   parent['comments'] &lt;&lt; item if parent<br/> end</pre>
+<p>This basically traverses the current hash and checks to see if the current node has a parent ID that matches an ID in the hash, and pushes that data into the 'comments' array.</p>
+<p>This is what it ends up looking like:</p>
+<pre style="padding-left: 30px;">{20=&gt;<br/> {"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"},<br/> 21=&gt;<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf",<br/> "comments"=&gt;<br/> [{"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;<br/> [{"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"},<br/> 22=&gt;<br/> {"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;<br/> [{"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"},<br/> 23=&gt;<br/> {"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}}</pre>
+<p>&nbsp;</p>
+<p>We now have populated sub-comments.</p>
+<p>The final step is to make sure sub-comments are only displayed in their respective array.</p>
+<pre style="padding-left: 30px;">nested_hash.reject{|id, item| <br/>  nested_hash.has_key? item['parent_id']<br/>}.values</pre>
+<p>Iterate over the hash, rejecting anything that has a parent_id that exists in the top-most level of the hash, and return the values of the "good" keys.</p>
+<p>Giving us:</p>
+<pre style="padding-left: 30px;">[{"id"=&gt;20,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;asfsafasd&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "updated_at"=&gt;Thu, 02 Oct 2014 20:04:45 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'asfsafasd':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"},<br/> {"id"=&gt;21,<br/> "title"=&gt;"RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop&lt;/p&gt;",<br/> "parent_id"=&gt;7,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:17 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'poop':3 're':1 'test':2",<br/> "slug"=&gt;"re-testing-4d35d96b-1c8b-4749-bf4b-052af7baf3cf",<br/> "comments"=&gt;<br/> [{"id"=&gt;22,<br/> "title"=&gt;"RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop fart&lt;/p&gt;",<br/> "parent_id"=&gt;21,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:28 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':5 'poop':4 're':1,2 'test':3",<br/> "slug"=&gt;"re-re-testing",<br/> "comments"=&gt;<br/> [{"id"=&gt;23,<br/> "title"=&gt;"RE: RE: RE: testing",<br/> "body"=&gt;"&lt;p&gt;poop and fart&lt;/p&gt;",<br/> "parent_id"=&gt;22,<br/> "user_id"=&gt;1,<br/> "created_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "updated_at"=&gt;Fri, 03 Oct 2014 02:01:40 UTC +00:00,<br/> "category_id"=&gt;1,<br/> "tsv"=&gt;"'fart':7 'poop':5 're':1,2,3 'test':4",<br/> "slug"=&gt;"re-re-re-testing",<br/> "comments"=&gt;[],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"}],<br/> "name"=&gt;"Devin"}]</pre>
+<p>...a nice tree-like structure we can iterate over in whatever we choose for a view. &nbsp;Disregard the extra "name"=&gt;".." bits, I'm still working out how to best retrieve author data and am currently using a hacky and ugly method to do so.</p>
+<p>&nbsp;</p>
+<p>That's all for now. &nbsp;Hopefully this sheds some light on this sort of thing. &nbsp;Some improvements right off the bat would be to put the nested tree construction in the treeify gem, and to make the SQL less clunky so we can mold it a little more, and get associated data easier (like author info).&nbsp;</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="posts/replies-are-enabled.html">Replies Are Enabled</a></h2>
+<p class="blog-post-meta">
+October 01 at 09:26 PM by <a href="users/1.html">Devin</a>
+in programming
+<a href="posts/replies-are-enabled.html">1 comments</a>
+</p>
+<div class="blog-post-body">
+<p>So I've managed to get replies working to my liking. &nbsp;I'll write more about the implementation later.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="posts/post-every-day.html">Post Every Day</a></h2>
+<p class="blog-post-meta">
+October 01 at 10:42 AM by <a href="users/1.html">Devin</a>
+in general
+<a href="posts/post-every-day.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I've been trying to post every day, but haven't been superbly successful. &nbsp;I've been fairly busy, with this, and a bunch of migration tasks at work, and not sitting down and drafting up a useful blog post.</p>
+<p>&nbsp;</p>
+<p>My whole goal for this blog is really to be a repository for things I've learned, notes I've taken, the quick and dirty to remember how to do something. &nbsp;That, and post as much Venture Bros,Big Lebowski, Mega Man, Battletech and Halo content as humanly possible. &nbsp;SOMETHING has to drive traffic here for revenue.</p>
+<p>&nbsp;</p>
+<p>I'll hopefully have a more content-rich post up later today. &nbsp;Right now, I'm working on finishing up reply trees, but am stuck on displaying a subtree properly.</p>
+<p>&nbsp;</p>
+<p>MORE SOON.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="posts/phat-workout-regiment.html">PHAT Workout &quot;Regiment&quot;</a></h2>
+<p class="blog-post-meta">
+September 24 at 10:24 AM by <a href="users/1.html">Devin</a>
+in weightlifting
+<a href="posts/phat-workout-regiment.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I've been doing Layne Norton's&nbsp;<a href="http://www.directlyfitness.com/store/p-h-a-t-training-layne-nortons-workout-system/">PHAT</a>&nbsp;training system for a few months now. &nbsp;I've seen some pretty great results in terms of strength increases on "big lifts" (squat, bench, rows and cleans to an extent), and I've noticed a reasonable amount of change in things I've had trouble with in the past, including my arms. &nbsp;I've done&nbsp;<a href="http://stronglifts.com/">Strong Lifts</a>, various circuit training programs, P90X, and serious kung fu training, so I have a good foundation for fitness, but I've still seen good strength increases, progressively at that, with this program.</p>
+<p>&nbsp;</p>
+<p>Here's what my week usually looks like:</p>
+<p>&nbsp;</p>
+<table style="height: 197px;" width="583">
+<tbody>
+<tr>
+<td>Sunday</td>
+<td>Monday (upper body power day)</td>
+<td>Tuesday (lower body power day)</td>
+<td>Wednesday</td>
+<td>Thursday (shoulder/arm hypertrophy)</td>
+<td>Friday (lower body hypertrophy)</td>
+<td>Saturday (chest and arms hypertrophy)</td>
+</tr>
+<tr>
+<td>rest</td>
+<td>3x5 bent over rows</td>
+<td>3x5 squats</td>
+<td>rest/jog</td>
+<td>6x3 power cleans</td>
+<td>6x3 squats</td>
+<td>punching bag work</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>2x8 perfect form pull ups</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>6x3 bent over barbell rows</td>
+<td>jog</td>
+<td>skull crushers</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>3x5 barbell bench press</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>3x8 barbell overhead press</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>2x8 overhead dumb bell shoulder press</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>3x12 barbell shrugs</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>2x10 skull crushers</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>This isn't 100% true to the program, but it gets me 2 days of squats (3 leg days, if you include cleans), and some good back work.</p>
+<p>&nbsp;</p>
+<p>I'd like to modify this in the future so I'm doing more running and I'm doing more back work. &nbsp;I'd like to do a pull up program, like the&nbsp;<a href="http://armstrongpullupprogram.com/">Armstrong pull up program</a>, and be more diligent with tricep work. &nbsp;I'd ALSO like to even out my strength more. &nbsp;My left arm has always been stronger, but even more so since my shoulder surgery in 2006.</p>
+<p>&nbsp;</p>
+<p>I'll post some stats with graphs and what not at some point. &nbsp;All of my progress is being tracked manually as it's easiest to go over to a book and journal what I've done right after I complete a set.</p>
+</div>
+<hr/>
+</div>
+ 
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="posts/bitching-about-bootstrap-3-dropdown-menus.html">Bitching About Bootstrap 3 Dropdown Menus</a></h2>
+<p class="blog-post-meta">
+September 23 at 11:21 AM by <a href="users/1.html">Devin</a>
+in ux
+<a href="posts/bitching-about-bootstrap-3-dropdown-menus.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>I decided to implement dropdown menus for a few items, including the "posts" link in the navbar (for logged in users). &nbsp;It works great, but I'm frustrated that there isn't really an option that allows you to make the parent item clickable, so I can't click the item that actually says "posts", and say, go to the posts listing page. &nbsp;I have to hover over (which was sort of a pain in the ass to get working properly), and click on a link that will take me to the listing page. &nbsp;That's too much work.</p>
+<p>Bootstrap is pretty great, I sure wouldn't want to put this together manually in any capacity, but some of the assumptions are irritating.</p>
+</div>
+<hr/>
+</div>
+ 
+ 
+<ul class="pagination">
+<li class="first">
+<a href="index.html">&laquo; First</a>
+</li>
+<li class="prev">
+<a rel="prev" href="indexfdb0.html?page=4">&lsaquo; Prev</a>
+</li>
+<li class="page">
+<a href="index.html">1</a>
+</li>
+<li class="page">
+<a href="index4658.html?page=2">2</a>
+</li>
+<li class="page">
+<a href="index9ba9.html?page=3">3</a>
+</li>
+<li class="page">
+<a rel="prev" href="indexfdb0.html?page=4">4</a>
+</li>
+<li class="page active">
+<a href="javascript:void(0)">5</a>
+</li>
+<li class="page">
+<a rel="next" href="indexc575.html?page=6">6</a>
+</li>
+<li class="page">
+<a href="index235c.html?page=7">7</a>
+</li>
+<li class="next">
+<a rel="next" href="indexc575.html?page=6">Next &rsaquo;</a>
+</li>
+<li class="last">
+<a href="index235c.html?page=7">Last &raquo;</a>
+</li>
+</ul>
+ 
+</div> 
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+<div class="sidebar-module sidebar-module-inset">
+<h4>About</h4>
+I myself dabbled in pacifism.
+</div>
+<div class="sidebar-module sidebar-module-inset">
+<form action="http://stonecolddev.in/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;"/>
+<label for="q">Search for:</label>
+<input type="text" name="q" id="q"/>
+<input type="submit" name="commit" value="Search"/>
+</form>
+</div>
+<div class="sidebar-module">
+<h4>Recent Activity</h4>
+<hr/>
+<p>Posts:</p>
+<ol class="list-unstyled">
+<li><a href="posts/re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-a6661dcc-47cb-43fb-9ad5-3e9815264f92.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 25 at 04:53 AM by <a href="users/11.html">/users/11</a></li>
+<li><a href="posts/rss-is-up.html">RSS is up!</a> on August 02 at 08:01 PM by <a href="users/1.html">Devin</a></li>
+<li><a href="posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-995d37b5-dd73-4026-a230-f42916315523.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 07 at 06:18 PM by <a href="users/4.html">/users/4</a></li>
+<li><a href="posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres: Part 2 - Testing</a> on May 22 at 03:48 PM by <a href="users/1.html">Devin</a></li>
+<li><a href="posts/re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-8a76baaf-db32-40cb-8852-8dea9e392e82.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on May 18 at 07:02 AM by <a href="users/3.html">/users/3</a></li>
+</ol>
+<hr/>
+</div>
+<div class="sidebar-module">
+<h4>Categories</h4>
+<ol class="list-unstyled">
+<li><a href="categories/tech-help.html">Tech Help</a></li>
+<li><a href="categories/code-snippets.html">code-snippets</a></li>
+<li><a href="categories/devops.html">devops</a></li>
+<li><a href="categories/9.html">weightlifting</a></li>
+<li><a href="categories/8.html">ux</a></li>
+<li><a href="categories/7.html">nerd</a></li>
+<li><a href="categories/programming.html">programming</a></li>
+<li><a href="categories/general.html">general</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Archives</h4>
+<ol class="list-unstyled">
+<li><a href="0/00.html">
+0</a></li>
+<li><a href="2016/06.html">
+June 2016</a></li>
+<li><a href="2015/08.html">
+August 2015</a></li>
+<li><a href="2015/06.html">
+June 2015</a></li>
+<li><a href="2015/05.html">
+May 2015</a></li>
+<li><a href="2015/02.html">
+February 2015</a></li>
+<li><a href="2015/01.html">
+January 2015</a></li>
+<li><a href="2014/12.html">
+December 2014</a></li>
+<li><a href="2014/11.html">
+November 2014</a></li>
+<li><a href="2014/10.html">
+October 2014</a></li>
+<li><a href="2014/09.html">
+September 2014</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Elsewhere</h4>
+<ol class="list-unstyled">
+<li><a href="http://twitter.com/stonecolddevin">twitter</a></li>
+<li><a href="http://github.com/dhoss">github</a></li>
+</ol>
+</div>
+</div> 
+</div> 
+</div> 
+<div class="footer">
+<p>Copyright &copy; <a href="index.html">Devin Austin</a>.</p>
+<p>
+<a href="#">Back to top</a>
+</p>
+</div>
+<script src="assets/application-2cfc6678b490e33002a68236b6c5d4a3691723d70b06c0e5e9fb52934470efbe.js" async="async"></script>
+<script src="assets/home-0b49e5589c0b754795ec3744e394bb16c1bb4934cadb70d2488c99e8fcb8976d.js" async="async"></script>
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-44716474-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+
+<!-- Mirrored from stonecolddev.in/?page=5 by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:13 GMT -->
+</html>

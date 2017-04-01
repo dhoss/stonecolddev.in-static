@@ -1,0 +1,27 @@
+HTTrack3.48-21 launched on Sat, 01 Apr 2017 16:26:32 at stonecolddev.in
+(httrack -w stonecolddev.in )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+16:26:55	Error: 	"Not Found" (404) at link stonecolddev.in/images/apple-touch-icon-144x144-precomposed.png (from stonecolddev.in/)
+16:26:55	Error: 	"Not Found" (404) at link stonecolddev.in/images/apple-touch-icon-114x114-precomposed.png (from stonecolddev.in/)
+16:26:55	Error: 	"Not Found" (404) at link stonecolddev.in/images/apple-touch-icon-72x72-precomposed.png (from stonecolddev.in/)
+16:26:55	Error: 	"Not Found" (404) at link stonecolddev.in/images/apple-touch-icon-precomposed.png (from stonecolddev.in/)
+16:26:55	Error: 	"Not Found" (404) at link stonecolddev.in/images/favicon.ico (from stonecolddev.in/)
+16:27:03	Error: 	"Unauthorized" (401) at link stonecolddev.in/feed.rss (from stonecolddev.in/)
+16:27:05	Error: 	"Not Found" (404) at link stonecolddev.in/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing (from stonecolddev.in/)
+16:27:26	Error: 	"Not Found" (404) at link stonecolddev.in/0/00 (from stonecolddev.in/)
+16:27:30	Error: 	"Not Found" (404) at link stonecolddev.in/stylesheets/sessions.css (from stonecolddev.in/users/sign_in)
+16:27:31	Error: 	"Not Found" (404) at link stonecolddev.in/javascripts/sessions.js (from stonecolddev.in/users/sign_in)
+16:27:33	Warning: 	Link stonecolddev.in/cdn-cgi/l/email-protection not scanned (follow robots meta tag)
+16:27:41	Error: 	"Not Found" (404) at link stonecolddev.in/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4 (from stonecolddev.in/?page=4)
+16:27:46	Error: 	"Not Found" (404) at link stonecolddev.in/categories/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4 (from stonecolddev.in/categories/programming)
+16:27:47	Error: 	"Not Found" (404) at link stonecolddev.in/stylesheets/passwords.css (from stonecolddev.in/users/password/new)
+16:27:47	Error: 	"Not Found" (404) at link stonecolddev.in/javascripts/passwords.js (from stonecolddev.in/users/password/new)
+16:27:47	Error: 	"Not Found" (404) at link stonecolddev.in/2014/quick-and-dirty-how-to-trees-in-sql-postgres-rails-4 (from stonecolddev.in/2014/10?page=2)
+
+HTTrack Website Copier/3.48-21 mirror complete in 1 minutes 15 seconds : 149 links scanned, 133 files written (1679605 bytes overall) [722122 bytes received at 9628 bytes/sec], 1681894 bytes transferred using HTTP compression in 135 files, ratio 33%, 41.5 requests per connection
+(15 errors, 1 warnings, 0 messages)

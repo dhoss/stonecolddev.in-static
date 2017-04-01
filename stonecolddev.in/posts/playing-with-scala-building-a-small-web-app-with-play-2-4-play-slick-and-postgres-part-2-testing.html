@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from stonecolddev.in/posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:03 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="alternate" type="application/rss+xml" title="Stonecold Devin RSS Feed" href="../feed.rss">
+<title>OSI: Office of Secret Intelligence</title>
+<meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="mNIclMNCtIeww3YWwrjM+CGm+DovZ9yyMBBUd0+T1aM+hMxn8llT+/5OrH+BK100jCTlds/fz1scRCj7FZjZtg=="/>
+<link rel="stylesheet" media="screen" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css"/>
+<link rel="stylesheet" media="all" href="../assets/application-24d259c985a7529c30f10dfa51efa0eef10e104849c3303e76f286ffb833fbb2.css"/>
+<link rel="stylesheet" media="all" href="../assets/posts-11d38437333d33a8d5e290fc265a18821de3a415743629310652cdd3858429e0.css"/>
+ 
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-144x144-precomposed.html" sizes="144x144"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-114x114-precomposed.html" sizes="114x114"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-72x72-precomposed.html" sizes="72x72"/>
+ 
+ 
+<link rel="apple-touch-icon-precomposed" type="image/png" href="../images/apple-touch-icon-precomposed.html"/>
+ 
+ 
+<link rel="shortcut icon" type="image/x-icon" href="../images/favicon.html"/>
+ 
+<script>
+      var _prum = [['id', '541bf1e1abe53d695828c003'],
+                   ['mark', 'firstbyte', (new Date()).getTime()]];
+      (function() {
+        var s = document.getElementsByTagName('script')[0]
+          , p = document.createElement('script');
+            p.async = 'async';
+            p.src = 'http://rum-static.pingdom.net/prum.min.js';
+            s.parentNode.insertBefore(p, s);
+      })();
+    </script>
+</head>
+<body>
+<div class="blog-masthead">
+<div class="container">
+<div class="navbar navbar-default" role="navigation">
+ 
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="../index.html">Office of Secret Intelligence</a>
+</div>
+<div class="collapse navbar-collapse navbar-ex1-collapse">
+<ul class="nav nav-pills">
+<li><a href="../index.html">Home</a></li>
+<li><a href="../users/sign_up.html">Sign up</a></li>
+<li><a href="../users/sign_in.html">Sign in</a></li>
+<li><a href="../index.html">Sign in with Twitter</a></li>
+<li class="dropdown">
+<a data-toggle="dropdown" class="dropdown-toggle" href="../posts.html">Posts <b class="caret"></b></a>
+<ul class="dropdown-menu">
+<li><a href="../posts.html">View All</a></li>
+</ul> 
+</li> 
+</ul>
+</div>
+</div>
+</div>
+<div class="container">
+ 
+<ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8235962495693803" data-ad-slot="9909766461" data-ad-format="auto"></ins>
+<div class="blog-header">
+<h1 class="blog-title"><a href="../index.html">Office of Secret Intelligence</a> </h1>
+<p class="lead blog-description">Who taught you to be a spy, fucking Gallagher!?! </p>
+</div>
+<div class="row">
+<div class="col-sm-8 blog-main">
+<div class="blog-post">
+<h2 class="blog-post-title"><a href="playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres: Part 2 - Testing</a></h2>
+<p class="blog-post-meta">
+May 22 at 03:48 PM by <a href="../users/1.html">Devin</a>
+in programming
+<a href="playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">0 comments</a>
+</p>
+<div class="blog-post-body">
+<p>Hi all, &nbsp;back again with the second part of the play scala+slick+postgres adventure.</p>
+<p>In <a href="playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres.html">part 1</a>, I touched on some of the hurdles I needed to overcome in order to get things up and running (<strong>UPDATE:</strong>. &nbsp;the docs have been updated, and Mirco has done a really good job of making this more clear: <a href="https://www.playframework.com/documentation/2.4.0/PlaySlick">https://www.playframework.com/documentation/2.4.0/PlaySlick</a>). &nbsp;In this article, I'd like to show you how to set up a quick and snappy testing environment.</p>
+<p>&nbsp;</p>
+<p>For starters, we will want a separate test database for postgres. &nbsp;For local tests, just manually create the database and user, and grant that user privileges to create tables, etc. on that database:&nbsp;</p>
+<p>
+<script src="https://gist.github.com/dhoss/e230ccb4c30ad902bd27.js"></script>
+</p>
+<p>Yes, I know, you don't need 3 psql calls to do this but it works and I'm extremely lazy.</p>
+<p>Now, let's start looking at the bigger picture. &nbsp;What if we wanted to set up continuous integration so we could have our tests run every time we git push'd? &nbsp;That sounds good, so let's do that with <a href="https://travis-ci.org/">Travis CI</a>. &nbsp;I'll leave it up to you to get your repository and account set up. &nbsp;Once that's done, check out the next part.</p>
+<p>Travis CI makes setting up CI testing with all sorts of things really easy. &nbsp;Basically, you just create a file named ".travis.yml" with your configuration options, add it to your repo&nbsp;(I've only done this with github, I don't know how other git hosts work with Travis) and it takes care of the rest after you commit it and push. &nbsp;Here's the one we're going to be working off of:</p>
+<p>
+<script src="https://gist.github.com/dhoss/61fb981fc597549a4a26.js"></script>
+</p>
+<p>Very simply, we tell Travis we're using&nbsp;scala,&nbsp;java 8, specifying a shell script which will kick off our tests (source shown below), and that we want to use postgres and have it run the commands in before_script prior to running our tests. &nbsp;Here's the script that runs our tests:</p>
+<p>
+<script src="https://gist.github.com/dhoss/72586b1a1078fb851cc7.js"></script>
+</p>
+<p>Briefly, this checks for an environment variable called <code>STEEL_TEST_LOCAL</code> being set to 1, which, if present, tells us we should nuke the current test tables so we can start clean for this upcoming test run. &nbsp;Set this on your local environment so you have fresh and clean test tables prior to each test run. &nbsp;Travis doesn't care about this since it tears everything down automatically at the end of the test.</p>
+<p>The next line uses a tool called <a href="http://flywaydb.org/">Flyway</a>&nbsp;to migrate our database changes. &nbsp;I actually really like Flyway, thusfar at least, because it was extremely easy to set up and start using. &nbsp;It completely blows Play's evolutions out of the water. &nbsp;Let's set that up really quick.</p>
+<p>Add the Flyway dependencies and configuration to your build.sbt, like so:</p>
+<p>
+<script src="https://gist.github.com/dhoss/ce37695ecf89cbdb9260.js"></script>
+</p>
+<p>The one thing here that needs explaining is the flywayLocations key. &nbsp;To specify a path on the filesystem (local to where your tests are being run out of, so most likely your app root), you pass something like <code>Seq('filesystem:path_to_sql_files')</code>.</p>
+<p>So, we have flyway set up for migrations, the next step is to create some migrations and have them applied. &nbsp;Flyway actually has excellent and extremely simple documentation on how to do this, and since we're using sbt to manage our tests, here's the introduction to do so:&nbsp;<a href="http://flywaydb.org/getstarted/firststeps/sbt.html">http://flywaydb.org/getstarted/firststeps/sbt.html</a>.</p>
+<p>Backing up slightly, I want to explain one more line in the build.sbt file:</p>
+<p><code>javaOptions in <span class="pl-en">Test</span> <span class="pl-k">++</span><span class="pl-k">=</span> <span class="pl-en">Seq</span>(<span class="pl-s"><span class="pl-pds">"</span>-Dconfig.file=conf/test.conf<span class="pl-pds">"</span></span>)</code></p>
+<p>This is all you need to specify a different configuration file for your test environment. &nbsp;This is really useful because you can just copy conf/application.conf, and change the database credentials to match your test environment, and it will automatically be picked up when your tests run (example here:&nbsp;<a href="https://github.com/dhoss/steel/blob/207ce910e668457c3870446322d98e94f5271f88/conf/test.conf#L40">https://github.com/dhoss/steel/blob/207ce910e668457c3870446322d98e94f5271f88/conf/test.conf#L40</a>)</p>
+<p>So, back to setting up our CI environment. &nbsp;In our run_tests.sh script, we:</p>
+<ol>
+<li>check if we are running locally, and if so, nuke the test database</li>
+<li>otherwise, we run our migrations with flyway + sbt, and because flyway lets us do so, we override the default database configuration parameters and set them to our test's parameters.</li>
+<li>lastly, we finally call sbt to run ours tests with <code>sbt +test</code></li>
+</ol>
+<p>That's pretty much it. &nbsp;I found it very simple to get a small, no-nonsense, test environment set up that transfers over quite nicely to a relatively robust CI solution.&nbsp;</p>
+<p>Next time, I'm planning on discussing some more application specific things dealing with getting your queries right with slick under this set up.</p>
+</div>
+<hr/>
+</div>
+ 
+<a href="../users/sign_in.html">Sign in to reply</a>
+<br/>
+<p>Replies:</p>
+</div> 
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+<div class="sidebar-module sidebar-module-inset">
+<h4>About</h4>
+I myself dabbled in pacifism.
+</div>
+<div class="sidebar-module sidebar-module-inset">
+<form action="http://stonecolddev.in/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;"/>
+<label for="q">Search for:</label>
+<input type="text" name="q" id="q"/>
+<input type="submit" name="commit" value="Search"/>
+</form>
+</div>
+<div class="sidebar-module">
+<h4>Recent Activity</h4>
+<hr/>
+<p>Posts:</p>
+<ol class="list-unstyled">
+<li><a href="re-re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-a6661dcc-47cb-43fb-9ad5-3e9815264f92.html">RE: RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 25 at 04:53 AM by <a href="../users/11.html">/users/11</a></li>
+<li><a href="rss-is-up.html">RSS is up!</a> on August 02 at 08:01 PM by <a href="../users/1.html">Devin</a></li>
+<li><a href="re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-995d37b5-dd73-4026-a230-f42916315523.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on June 07 at 06:18 PM by <a href="../users/4.html">/users/4</a></li>
+<li><a href="playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing.html">Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres: Part 2 - Testing</a> on May 22 at 03:48 PM by <a href="../users/1.html">Devin</a></li>
+<li><a href="re-playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-8a76baaf-db32-40cb-8852-8dea9e392e82.html">RE: Playing With Scala: Building a Small Web App with Play 2.4, Play-Slick and Postgres</a> on May 18 at 07:02 AM by <a href="../users/3.html">/users/3</a></li>
+</ol>
+<hr/>
+</div>
+<div class="sidebar-module">
+<h4>Categories</h4>
+<ol class="list-unstyled">
+<li><a href="../categories/tech-help.html">Tech Help</a></li>
+<li><a href="../categories/code-snippets.html">code-snippets</a></li>
+<li><a href="../categories/devops.html">devops</a></li>
+<li><a href="../categories/9.html">weightlifting</a></li>
+<li><a href="../categories/8.html">ux</a></li>
+<li><a href="../categories/7.html">nerd</a></li>
+<li><a href="../categories/programming.html">programming</a></li>
+<li><a href="../categories/general.html">general</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Archives</h4>
+<ol class="list-unstyled">
+<li><a href="../0/00.html">
+0</a></li>
+<li><a href="../2016/06.html">
+June 2016</a></li>
+<li><a href="../2015/08.html">
+August 2015</a></li>
+<li><a href="../2015/06.html">
+June 2015</a></li>
+<li><a href="../2015/05.html">
+May 2015</a></li>
+<li><a href="../2015/02.html">
+February 2015</a></li>
+<li><a href="../2015/01.html">
+January 2015</a></li>
+<li><a href="../2014/12.html">
+December 2014</a></li>
+<li><a href="../2014/11.html">
+November 2014</a></li>
+<li><a href="../2014/10.html">
+October 2014</a></li>
+<li><a href="../2014/09.html">
+September 2014</a></li>
+</ol>
+</div>
+<div class="sidebar-module">
+<h4>Elsewhere</h4>
+<ol class="list-unstyled">
+<li><a href="http://twitter.com/stonecolddevin">twitter</a></li>
+<li><a href="http://github.com/dhoss">github</a></li>
+</ol>
+</div>
+</div> 
+</div> 
+</div> 
+<div class="footer">
+<p>Copyright &copy; <a href="../index.html">Devin Austin</a>.</p>
+<p>
+<a href="#">Back to top</a>
+</p>
+</div>
+<script src="../assets/application-2cfc6678b490e33002a68236b6c5d4a3691723d70b06c0e5e9fb52934470efbe.js" async="async"></script>
+<script src="../assets/posts-91efcc14089ce1794162dd25aa30f0aa9c48e63abf50f1ff60a0a0860081e54d.js" async="async"></script>
+<script>
+   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','http://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-44716474-1', 'auto');
+    ga('send', 'pageview');
+  </script>
+<script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+
+<!-- Mirrored from stonecolddev.in/posts/playing-with-scala-building-a-small-web-app-with-play-2-4-play-slick-and-postgres-part-2-testing by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 01 Apr 2017 22:27:03 GMT -->
+</html>
